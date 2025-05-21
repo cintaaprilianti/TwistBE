@@ -1,0 +1,198 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int       @id @default(autoincrement())
+  username       String    @unique
+  email          String    @unique
+  passwordHash   String    
+  displayName    String?
+  bio            String?
+  followerCount  Int       @default(0)
+  followingCount Int       @default(0)
+  createdAt      DateTime  @default(now())
+  lastLogin      DateTime?
+  isVerified     Boolean   @default(false)
+  isActive       Boolean   @default(true)
+  
+  posts                   Post[]
+  comments                Comment[]
+  likes                   Like[]
+  reposts                 Repost[]
+  bookmarks               Bookmark[]
+  settings                UserSetting[]
+  activities              UserActivity[]
+  profileTabs             UserProfileTab[]
+  followers               Follower[]    @relation("UserFollowers")
+  following               Follower[]    @relation("UserFollowing")
+  receivedNotifications   Notification[] @relation("NotificationReceiver")
+  triggeredNotifications  Notification[] @relation("NotificationTrigger")
+
+  @@map("users")
+}
+
+model Post {
+  id            Int       @id @default(autoincrement())
+  userId        Int
+  parentPostId  Int?
+  content       String?
+  viewCount     Int       @default(0)
+  likeCount     Int       @default(0)
+  commentCount  Int       @default(0)
+  repostCount   Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime? @updatedAt
+  isEdited      Boolean   @default(false)
+  isPinned      Boolean   @default(false)
+  isDeleted     Boolean   @default(false)
+  
+  user          User      @relation(fields: [userId], references: [id])
+  parentPost    Post?     @relation("PostReplies", fields: [parentPostId], references: [id])
+  replies       Post[]    @relation("PostReplies")
+  comments      Comment[]
+  likes         Like[]
+  reposts       Repost[]
+  bookmarks     Bookmark[]
+
+  @@map("posts")
+}
+
+model Comment {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  postId    Int
+  content   String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  isEdited  Boolean   @default(false)
+  isDeleted Boolean   @default(false)
+  
+  user      User      @relation(fields: [userId], references: [id])
+  post      Post      @relation(fields: [postId], references: [id])
+
+  @@map("comments")
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  postId    Int
+  createdAt DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
+
+  @@unique([userId, postId])
+  @@map("likes")
+}
+
+model Repost {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  postId       Int
+  quoteContent String?
+  createdAt    DateTime @default(now())
+  isQuotePost  Boolean  @default(false)
+  
+  user         User     @relation(fields: [userId], references: [id])
+  post         Post     @relation(fields: [postId], references: [id])
+
+  @@map("reposts")
+}
+
+model Follower {
+  id          Int      @id @default(autoincrement())
+  userId      Int      // follower
+  followingId Int      // yang diikuti
+  createdAt   DateTime @default(now())
+  
+  follower    User     @relation("UserFollowers", fields: [userId], references: [id])
+  following   User     @relation("UserFollowing", fields: [followingId], references: [id])
+
+  @@unique([userId, followingId])
+  @@map("followers")
+}
+
+model Bookmark {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  postId    Int
+  createdAt DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
+
+  @@unique([userId, postId])
+  @@map("bookmarks")
+}
+
+model Notification {
+  id               Int      @id @default(autoincrement())
+  userId           Int      // penerima
+  triggeredByUserId Int
+  notificationType String
+  referenceType    String
+  referenceId      Int
+  isRead           Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  
+  user             User     @relation("NotificationReceiver", fields: [userId], references: [id])
+  triggeredByUser  User     @relation("NotificationTrigger", fields: [triggeredByUserId], references: [id])
+
+  @@map("notifications")
+}
+
+model UserSetting {
+  id                   Int       @id @default(autoincrement())
+  userId               Int
+  notificationsEnabled Boolean   @default(true)
+  directMessagePrivacy Boolean   @default(true)
+  whoCanReply          Boolean   @default(true)
+  themePreference      String?
+  languagePreference   String?
+  updatedAt            DateTime  @updatedAt
+  
+  user                 User      @relation(fields: [userId], references: [id])
+
+  @@map("user_settings")
+}
+
+model UserActivity {
+  id            Int      @id @default(autoincrement())
+  userId        Int
+  activityType  String
+  referenceType String
+  referenceId   Int
+  createdAt     DateTime @default(now())
+  showInProfile Boolean  @default(true)
+  
+  user          User     @relation(fields: [userId], references: [id])
+
+  @@map("user_activities")
+}
+
+model UserProfileTab {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  tabName      String
+  isVisible    Boolean  @default(true)
+  displayOrder Int?
+  updatedAt    DateTime @updatedAt
+  
+  user         User     @relation(fields: [userId], references: [id])
+
+  @@map("user_profile_tabs")
+}
