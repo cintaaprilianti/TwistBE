@@ -246,7 +246,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\User\\twist-backend\\src\\generated\\prisma",
+      "value": "C:\\Users\\Modern 14\\TwistBE\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -260,7 +260,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\User\\twist-backend\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\Modern 14\\TwistBE\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -278,7 +278,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://postgres:123321@localhost:5432/twist-db?schema=public"
+        "value": "postgresql://postgres:true95love@localhost:5432/twist-db?schema=public"
       }
     }
   },
