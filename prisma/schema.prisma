@@ -48,8 +48,7 @@ model Post {
   id            Int       @id @default(autoincrement())
   userId        Int
   parentPostId  Int?
-  content       String?
-  viewCount     Int       @default(0)
+  content       String
   likeCount     Int       @default(0)
   commentCount  Int       @default(0)
   repostCount   Int       @default(0)

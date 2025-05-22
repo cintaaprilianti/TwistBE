@@ -3502,7 +3502,6 @@ export namespace Prisma {
     id: number | null
     userId: number | null
     parentPostId: number | null
-    viewCount: number | null
     likeCount: number | null
     commentCount: number | null
     repostCount: number | null
@@ -3512,7 +3511,6 @@ export namespace Prisma {
     id: number | null
     userId: number | null
     parentPostId: number | null
-    viewCount: number | null
     likeCount: number | null
     commentCount: number | null
     repostCount: number | null
@@ -3523,7 +3521,6 @@ export namespace Prisma {
     userId: number | null
     parentPostId: number | null
     content: string | null
-    viewCount: number | null
     likeCount: number | null
     commentCount: number | null
     repostCount: number | null
@@ -3539,7 +3536,6 @@ export namespace Prisma {
     userId: number | null
     parentPostId: number | null
     content: string | null
-    viewCount: number | null
     likeCount: number | null
     commentCount: number | null
     repostCount: number | null
@@ -3555,7 +3551,6 @@ export namespace Prisma {
     userId: number
     parentPostId: number
     content: number
-    viewCount: number
     likeCount: number
     commentCount: number
     repostCount: number
@@ -3572,7 +3567,6 @@ export namespace Prisma {
     id?: true
     userId?: true
     parentPostId?: true
-    viewCount?: true
     likeCount?: true
     commentCount?: true
     repostCount?: true
@@ -3582,7 +3576,6 @@ export namespace Prisma {
     id?: true
     userId?: true
     parentPostId?: true
-    viewCount?: true
     likeCount?: true
     commentCount?: true
     repostCount?: true
@@ -3593,7 +3586,6 @@ export namespace Prisma {
     userId?: true
     parentPostId?: true
     content?: true
-    viewCount?: true
     likeCount?: true
     commentCount?: true
     repostCount?: true
@@ -3609,7 +3601,6 @@ export namespace Prisma {
     userId?: true
     parentPostId?: true
     content?: true
-    viewCount?: true
     likeCount?: true
     commentCount?: true
     repostCount?: true
@@ -3625,7 +3616,6 @@ export namespace Prisma {
     userId?: true
     parentPostId?: true
     content?: true
-    viewCount?: true
     likeCount?: true
     commentCount?: true
     repostCount?: true
@@ -3727,8 +3717,7 @@ export namespace Prisma {
     id: number
     userId: number
     parentPostId: number | null
-    content: string | null
-    viewCount: number
+    content: string
     likeCount: number
     commentCount: number
     repostCount: number
@@ -3763,7 +3752,6 @@ export namespace Prisma {
     userId?: boolean
     parentPostId?: boolean
     content?: boolean
-    viewCount?: boolean
     likeCount?: boolean
     commentCount?: boolean
     repostCount?: boolean
@@ -3787,7 +3775,6 @@ export namespace Prisma {
     userId?: boolean
     parentPostId?: boolean
     content?: boolean
-    viewCount?: boolean
     likeCount?: boolean
     commentCount?: boolean
     repostCount?: boolean
@@ -3805,7 +3792,6 @@ export namespace Prisma {
     userId?: boolean
     parentPostId?: boolean
     content?: boolean
-    viewCount?: boolean
     likeCount?: boolean
     commentCount?: boolean
     repostCount?: boolean
@@ -3823,7 +3809,6 @@ export namespace Prisma {
     userId?: boolean
     parentPostId?: boolean
     content?: boolean
-    viewCount?: boolean
     likeCount?: boolean
     commentCount?: boolean
     repostCount?: boolean
@@ -3834,7 +3819,7 @@ export namespace Prisma {
     isDeleted?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "parentPostId" | "content" | "viewCount" | "likeCount" | "commentCount" | "repostCount" | "createdAt" | "updatedAt" | "isEdited" | "isPinned" | "isDeleted", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "parentPostId" | "content" | "likeCount" | "commentCount" | "repostCount" | "createdAt" | "updatedAt" | "isEdited" | "isPinned" | "isDeleted", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     parentPost?: boolean | Post$parentPostArgs<ExtArgs>
@@ -3869,8 +3854,7 @@ export namespace Prisma {
       id: number
       userId: number
       parentPostId: number | null
-      content: string | null
-      viewCount: number
+      content: string
       likeCount: number
       commentCount: number
       repostCount: number
@@ -4313,7 +4297,6 @@ export namespace Prisma {
     readonly userId: FieldRef<"Post", 'Int'>
     readonly parentPostId: FieldRef<"Post", 'Int'>
     readonly content: FieldRef<"Post", 'String'>
-    readonly viewCount: FieldRef<"Post", 'Int'>
     readonly likeCount: FieldRef<"Post", 'Int'>
     readonly commentCount: FieldRef<"Post", 'Int'>
     readonly repostCount: FieldRef<"Post", 'Int'>
@@ -14990,7 +14973,6 @@ export namespace Prisma {
     userId: 'userId',
     parentPostId: 'parentPostId',
     content: 'content',
-    viewCount: 'viewCount',
     likeCount: 'likeCount',
     commentCount: 'commentCount',
     repostCount: 'repostCount',
@@ -15340,8 +15322,7 @@ export namespace Prisma {
     id?: IntFilter<"Post"> | number
     userId?: IntFilter<"Post"> | number
     parentPostId?: IntNullableFilter<"Post"> | number | null
-    content?: StringNullableFilter<"Post"> | string | null
-    viewCount?: IntFilter<"Post"> | number
+    content?: StringFilter<"Post"> | string
     likeCount?: IntFilter<"Post"> | number
     commentCount?: IntFilter<"Post"> | number
     repostCount?: IntFilter<"Post"> | number
@@ -15363,8 +15344,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     parentPostId?: SortOrderInput | SortOrder
-    content?: SortOrderInput | SortOrder
-    viewCount?: SortOrder
+    content?: SortOrder
     likeCount?: SortOrder
     commentCount?: SortOrder
     repostCount?: SortOrder
@@ -15389,8 +15369,7 @@ export namespace Prisma {
     NOT?: PostWhereInput | PostWhereInput[]
     userId?: IntFilter<"Post"> | number
     parentPostId?: IntNullableFilter<"Post"> | number | null
-    content?: StringNullableFilter<"Post"> | string | null
-    viewCount?: IntFilter<"Post"> | number
+    content?: StringFilter<"Post"> | string
     likeCount?: IntFilter<"Post"> | number
     commentCount?: IntFilter<"Post"> | number
     repostCount?: IntFilter<"Post"> | number
@@ -15412,8 +15391,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     parentPostId?: SortOrderInput | SortOrder
-    content?: SortOrderInput | SortOrder
-    viewCount?: SortOrder
+    content?: SortOrder
     likeCount?: SortOrder
     commentCount?: SortOrder
     repostCount?: SortOrder
@@ -15436,8 +15414,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Post"> | number
     userId?: IntWithAggregatesFilter<"Post"> | number
     parentPostId?: IntNullableWithAggregatesFilter<"Post"> | number | null
-    content?: StringNullableWithAggregatesFilter<"Post"> | string | null
-    viewCount?: IntWithAggregatesFilter<"Post"> | number
+    content?: StringWithAggregatesFilter<"Post"> | string
     likeCount?: IntWithAggregatesFilter<"Post"> | number
     commentCount?: IntWithAggregatesFilter<"Post"> | number
     repostCount?: IntWithAggregatesFilter<"Post"> | number
@@ -16183,8 +16160,7 @@ export namespace Prisma {
   }
 
   export type PostCreateInput = {
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -16206,8 +16182,7 @@ export namespace Prisma {
     id?: number
     userId: number
     parentPostId?: number | null
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -16224,8 +16199,7 @@ export namespace Prisma {
   }
 
   export type PostUpdateInput = {
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -16247,8 +16221,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     parentPostId?: NullableIntFieldUpdateOperationsInput | number | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -16268,8 +16241,7 @@ export namespace Prisma {
     id?: number
     userId: number
     parentPostId?: number | null
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -16281,8 +16253,7 @@ export namespace Prisma {
   }
 
   export type PostUpdateManyMutationInput = {
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -16297,8 +16268,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     parentPostId?: NullableIntFieldUpdateOperationsInput | number | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -17185,7 +17155,6 @@ export namespace Prisma {
     userId?: SortOrder
     parentPostId?: SortOrder
     content?: SortOrder
-    viewCount?: SortOrder
     likeCount?: SortOrder
     commentCount?: SortOrder
     repostCount?: SortOrder
@@ -17200,7 +17169,6 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     parentPostId?: SortOrder
-    viewCount?: SortOrder
     likeCount?: SortOrder
     commentCount?: SortOrder
     repostCount?: SortOrder
@@ -17211,7 +17179,6 @@ export namespace Prisma {
     userId?: SortOrder
     parentPostId?: SortOrder
     content?: SortOrder
-    viewCount?: SortOrder
     likeCount?: SortOrder
     commentCount?: SortOrder
     repostCount?: SortOrder
@@ -17227,7 +17194,6 @@ export namespace Prisma {
     userId?: SortOrder
     parentPostId?: SortOrder
     content?: SortOrder
-    viewCount?: SortOrder
     likeCount?: SortOrder
     commentCount?: SortOrder
     repostCount?: SortOrder
@@ -17242,7 +17208,6 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     parentPostId?: SortOrder
-    viewCount?: SortOrder
     likeCount?: SortOrder
     commentCount?: SortOrder
     repostCount?: SortOrder
@@ -18830,8 +18795,7 @@ export namespace Prisma {
   }
 
   export type PostCreateWithoutUserInput = {
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -18851,8 +18815,7 @@ export namespace Prisma {
   export type PostUncheckedCreateWithoutUserInput = {
     id?: number
     parentPostId?: number | null
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -19178,8 +19141,7 @@ export namespace Prisma {
     id?: IntFilter<"Post"> | number
     userId?: IntFilter<"Post"> | number
     parentPostId?: IntNullableFilter<"Post"> | number | null
-    content?: StringNullableFilter<"Post"> | string | null
-    viewCount?: IntFilter<"Post"> | number
+    content?: StringFilter<"Post"> | string
     likeCount?: IntFilter<"Post"> | number
     commentCount?: IntFilter<"Post"> | number
     repostCount?: IntFilter<"Post"> | number
@@ -19532,8 +19494,7 @@ export namespace Prisma {
   }
 
   export type PostCreateWithoutRepliesInput = {
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -19554,8 +19515,7 @@ export namespace Prisma {
     id?: number
     userId: number
     parentPostId?: number | null
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -19576,8 +19536,7 @@ export namespace Prisma {
   }
 
   export type PostCreateWithoutParentPostInput = {
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -19597,8 +19556,7 @@ export namespace Prisma {
   export type PostUncheckedCreateWithoutParentPostInput = {
     id?: number
     userId: number
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -19794,8 +19752,7 @@ export namespace Prisma {
   }
 
   export type PostUpdateWithoutRepliesInput = {
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -19816,8 +19773,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     parentPostId?: NullableIntFieldUpdateOperationsInput | number | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -19969,8 +19925,7 @@ export namespace Prisma {
   }
 
   export type PostCreateWithoutCommentsInput = {
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -19991,8 +19946,7 @@ export namespace Prisma {
     id?: number
     userId: number
     parentPostId?: number | null
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -20086,8 +20040,7 @@ export namespace Prisma {
   }
 
   export type PostUpdateWithoutCommentsInput = {
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -20108,8 +20061,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     parentPostId?: NullableIntFieldUpdateOperationsInput | number | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -20181,8 +20133,7 @@ export namespace Prisma {
   }
 
   export type PostCreateWithoutLikesInput = {
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -20203,8 +20154,7 @@ export namespace Prisma {
     id?: number
     userId: number
     parentPostId?: number | null
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -20298,8 +20248,7 @@ export namespace Prisma {
   }
 
   export type PostUpdateWithoutLikesInput = {
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -20320,8 +20269,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     parentPostId?: NullableIntFieldUpdateOperationsInput | number | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -20393,8 +20341,7 @@ export namespace Prisma {
   }
 
   export type PostCreateWithoutRepostsInput = {
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -20415,8 +20362,7 @@ export namespace Prisma {
     id?: number
     userId: number
     parentPostId?: number | null
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -20510,8 +20456,7 @@ export namespace Prisma {
   }
 
   export type PostUpdateWithoutRepostsInput = {
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -20532,8 +20477,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     parentPostId?: NullableIntFieldUpdateOperationsInput | number | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -20841,8 +20785,7 @@ export namespace Prisma {
   }
 
   export type PostCreateWithoutBookmarksInput = {
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -20863,8 +20806,7 @@ export namespace Prisma {
     id?: number
     userId: number
     parentPostId?: number | null
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -20958,8 +20900,7 @@ export namespace Prisma {
   }
 
   export type PostUpdateWithoutBookmarksInput = {
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -20980,8 +20921,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     parentPostId?: NullableIntFieldUpdateOperationsInput | number | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -21589,8 +21529,7 @@ export namespace Prisma {
   export type PostCreateManyUserInput = {
     id?: number
     parentPostId?: number | null
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -21691,8 +21630,7 @@ export namespace Prisma {
   }
 
   export type PostUpdateWithoutUserInput = {
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -21712,8 +21650,7 @@ export namespace Prisma {
   export type PostUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     parentPostId?: NullableIntFieldUpdateOperationsInput | number | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -21732,8 +21669,7 @@ export namespace Prisma {
   export type PostUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     parentPostId?: NullableIntFieldUpdateOperationsInput | number | null
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -22003,8 +21939,7 @@ export namespace Prisma {
   export type PostCreateManyParentPostInput = {
     id?: number
     userId: number
-    content?: string | null
-    viewCount?: number
+    content: string
     likeCount?: number
     commentCount?: number
     repostCount?: number
@@ -22046,8 +21981,7 @@ export namespace Prisma {
   }
 
   export type PostUpdateWithoutParentPostInput = {
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -22067,8 +22001,7 @@ export namespace Prisma {
   export type PostUncheckedUpdateWithoutParentPostInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number
@@ -22087,8 +22020,7 @@ export namespace Prisma {
   export type PostUncheckedUpdateManyWithoutParentPostInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
-    content?: NullableStringFieldUpdateOperationsInput | string | null
-    viewCount?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
     likeCount?: IntFieldUpdateOperationsInput | number
     commentCount?: IntFieldUpdateOperationsInput | number
     repostCount?: IntFieldUpdateOperationsInput | number

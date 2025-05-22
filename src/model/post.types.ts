@@ -1,4 +1,5 @@
 export type PostPayload = {
-  content?: string;
+  userId : number;
+  content: string;
   parentPostId?: number;
 };

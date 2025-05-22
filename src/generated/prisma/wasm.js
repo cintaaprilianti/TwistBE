@@ -140,7 +140,6 @@ exports.Prisma.PostScalarFieldEnum = {
   userId: 'userId',
   parentPostId: 'parentPostId',
   content: 'content',
-  viewCount: 'viewCount',
   likeCount: 'likeCount',
   commentCount: 'commentCount',
   repostCount: 'repostCount',

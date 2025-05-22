@@ -18,7 +18,7 @@ export const authMiddleware: MiddlewareHandler = async (c, next) => {
     const payload = jwt.verify(token, process.env.JWT_SECRET!) as {
       id: string;
     };
-    c.set("userId", payload.id);
+    c.set("user", { id: payload.id }); 
     await next();
   } catch (err) {
     return c.json({ error: "Token tidak valid atau kadaluarsa" }, 401);
