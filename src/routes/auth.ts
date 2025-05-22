@@ -7,6 +7,10 @@ auth.post("/register", AuthController.registerUser);
 
 auth.post("/login", AuthController.loginUser);
 
+auth.post("/forgot-password", AuthController.forgotPassword);
+
+auth.post("/reset-password", AuthController.resetPassword);
+
 
 
 export default auth;

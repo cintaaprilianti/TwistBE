@@ -10,3 +10,13 @@ export type LoginInput = {
   password: string;
 };
 
+export interface ForgotPasswordInput {
+  email: string;
+}
+
+export interface ResetPasswordInput {
+  token: string;
+  password: string;
+  confirmPassword: string;
+}
+

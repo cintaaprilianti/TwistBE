@@ -131,6 +131,8 @@ exports.Prisma.UserScalarFieldEnum = {
   followingCount: 'followingCount',
   createdAt: 'createdAt',
   lastLogin: 'lastLogin',
+  resetToken: 'resetToken',
+  resetTokenExpiry: 'resetTokenExpiry',
   isVerified: 'isVerified',
   isActive: 'isActive'
 };

@@ -2010,6 +2010,8 @@ export namespace Prisma {
     followingCount: number | null
     createdAt: Date | null
     lastLogin: Date | null
+    resetToken: string | null
+    resetTokenExpiry: Date | null
     isVerified: boolean | null
     isActive: boolean | null
   }
@@ -2025,6 +2027,8 @@ export namespace Prisma {
     followingCount: number | null
     createdAt: Date | null
     lastLogin: Date | null
+    resetToken: string | null
+    resetTokenExpiry: Date | null
     isVerified: boolean | null
     isActive: boolean | null
   }
@@ -2040,6 +2044,8 @@ export namespace Prisma {
     followingCount: number
     createdAt: number
     lastLogin: number
+    resetToken: number
+    resetTokenExpiry: number
     isVerified: number
     isActive: number
     _all: number
@@ -2069,6 +2075,8 @@ export namespace Prisma {
     followingCount?: true
     createdAt?: true
     lastLogin?: true
+    resetToken?: true
+    resetTokenExpiry?: true
     isVerified?: true
     isActive?: true
   }
@@ -2084,6 +2092,8 @@ export namespace Prisma {
     followingCount?: true
     createdAt?: true
     lastLogin?: true
+    resetToken?: true
+    resetTokenExpiry?: true
     isVerified?: true
     isActive?: true
   }
@@ -2099,6 +2109,8 @@ export namespace Prisma {
     followingCount?: true
     createdAt?: true
     lastLogin?: true
+    resetToken?: true
+    resetTokenExpiry?: true
     isVerified?: true
     isActive?: true
     _all?: true
@@ -2201,6 +2213,8 @@ export namespace Prisma {
     followingCount: number
     createdAt: Date
     lastLogin: Date | null
+    resetToken: string | null
+    resetTokenExpiry: Date | null
     isVerified: boolean
     isActive: boolean
     _count: UserCountAggregateOutputType | null
@@ -2235,6 +2249,8 @@ export namespace Prisma {
     followingCount?: boolean
     createdAt?: boolean
     lastLogin?: boolean
+    resetToken?: boolean
+    resetTokenExpiry?: boolean
     isVerified?: boolean
     isActive?: boolean
     posts?: boolean | User$postsArgs<ExtArgs>
@@ -2263,6 +2279,8 @@ export namespace Prisma {
     followingCount?: boolean
     createdAt?: boolean
     lastLogin?: boolean
+    resetToken?: boolean
+    resetTokenExpiry?: boolean
     isVerified?: boolean
     isActive?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2278,6 +2296,8 @@ export namespace Prisma {
     followingCount?: boolean
     createdAt?: boolean
     lastLogin?: boolean
+    resetToken?: boolean
+    resetTokenExpiry?: boolean
     isVerified?: boolean
     isActive?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2293,11 +2313,13 @@ export namespace Prisma {
     followingCount?: boolean
     createdAt?: boolean
     lastLogin?: boolean
+    resetToken?: boolean
+    resetTokenExpiry?: boolean
     isVerified?: boolean
     isActive?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "passwordHash" | "displayName" | "bio" | "followerCount" | "followingCount" | "createdAt" | "lastLogin" | "isVerified" | "isActive", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "passwordHash" | "displayName" | "bio" | "followerCount" | "followingCount" | "createdAt" | "lastLogin" | "resetToken" | "resetTokenExpiry" | "isVerified" | "isActive", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | User$postsArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
@@ -2343,6 +2365,8 @@ export namespace Prisma {
       followingCount: number
       createdAt: Date
       lastLogin: Date | null
+      resetToken: string | null
+      resetTokenExpiry: Date | null
       isVerified: boolean
       isActive: boolean
     }, ExtArgs["result"]["user"]>
@@ -2790,6 +2814,8 @@ export namespace Prisma {
     readonly followingCount: FieldRef<"User", 'Int'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly lastLogin: FieldRef<"User", 'DateTime'>
+    readonly resetToken: FieldRef<"User", 'String'>
+    readonly resetTokenExpiry: FieldRef<"User", 'DateTime'>
     readonly isVerified: FieldRef<"User", 'Boolean'>
     readonly isActive: FieldRef<"User", 'Boolean'>
   }
@@ -14961,6 +14987,8 @@ export namespace Prisma {
     followingCount: 'followingCount',
     createdAt: 'createdAt',
     lastLogin: 'lastLogin',
+    resetToken: 'resetToken',
+    resetTokenExpiry: 'resetTokenExpiry',
     isVerified: 'isVerified',
     isActive: 'isActive'
   };
@@ -15204,6 +15232,8 @@ export namespace Prisma {
     followingCount?: IntFilter<"User"> | number
     createdAt?: DateTimeFilter<"User"> | Date | string
     lastLogin?: DateTimeNullableFilter<"User"> | Date | string | null
+    resetToken?: StringNullableFilter<"User"> | string | null
+    resetTokenExpiry?: DateTimeNullableFilter<"User"> | Date | string | null
     isVerified?: BoolFilter<"User"> | boolean
     isActive?: BoolFilter<"User"> | boolean
     posts?: PostListRelationFilter
@@ -15231,6 +15261,8 @@ export namespace Prisma {
     followingCount?: SortOrder
     createdAt?: SortOrder
     lastLogin?: SortOrderInput | SortOrder
+    resetToken?: SortOrderInput | SortOrder
+    resetTokenExpiry?: SortOrderInput | SortOrder
     isVerified?: SortOrder
     isActive?: SortOrder
     posts?: PostOrderByRelationAggregateInput
@@ -15261,6 +15293,8 @@ export namespace Prisma {
     followingCount?: IntFilter<"User"> | number
     createdAt?: DateTimeFilter<"User"> | Date | string
     lastLogin?: DateTimeNullableFilter<"User"> | Date | string | null
+    resetToken?: StringNullableFilter<"User"> | string | null
+    resetTokenExpiry?: DateTimeNullableFilter<"User"> | Date | string | null
     isVerified?: BoolFilter<"User"> | boolean
     isActive?: BoolFilter<"User"> | boolean
     posts?: PostListRelationFilter
@@ -15288,6 +15322,8 @@ export namespace Prisma {
     followingCount?: SortOrder
     createdAt?: SortOrder
     lastLogin?: SortOrderInput | SortOrder
+    resetToken?: SortOrderInput | SortOrder
+    resetTokenExpiry?: SortOrderInput | SortOrder
     isVerified?: SortOrder
     isActive?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -15311,6 +15347,8 @@ export namespace Prisma {
     followingCount?: IntWithAggregatesFilter<"User"> | number
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     lastLogin?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    resetToken?: StringNullableWithAggregatesFilter<"User"> | string | null
+    resetTokenExpiry?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     isVerified?: BoolWithAggregatesFilter<"User"> | boolean
     isActive?: BoolWithAggregatesFilter<"User"> | boolean
   }
@@ -16019,6 +16057,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -16046,6 +16086,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -16072,6 +16114,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -16099,6 +16143,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -16126,6 +16172,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
   }
@@ -16140,6 +16188,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -16155,6 +16205,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -16995,6 +17047,8 @@ export namespace Prisma {
     followingCount?: SortOrder
     createdAt?: SortOrder
     lastLogin?: SortOrder
+    resetToken?: SortOrder
+    resetTokenExpiry?: SortOrder
     isVerified?: SortOrder
     isActive?: SortOrder
   }
@@ -17016,6 +17070,8 @@ export namespace Prisma {
     followingCount?: SortOrder
     createdAt?: SortOrder
     lastLogin?: SortOrder
+    resetToken?: SortOrder
+    resetTokenExpiry?: SortOrder
     isVerified?: SortOrder
     isActive?: SortOrder
   }
@@ -17031,6 +17087,8 @@ export namespace Prisma {
     followingCount?: SortOrder
     createdAt?: SortOrder
     lastLogin?: SortOrder
+    resetToken?: SortOrder
+    resetTokenExpiry?: SortOrder
     isVerified?: SortOrder
     isActive?: SortOrder
   }
@@ -19447,6 +19505,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     comments?: CommentCreateNestedManyWithoutUserInput
@@ -19473,6 +19533,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
@@ -19699,6 +19761,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     comments?: CommentUpdateManyWithoutUserNestedInput
@@ -19725,6 +19789,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
@@ -19878,6 +19944,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -19904,6 +19972,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -19987,6 +20057,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -20013,6 +20085,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -20086,6 +20160,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -20112,6 +20188,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -20195,6 +20273,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -20221,6 +20301,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -20294,6 +20376,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -20320,6 +20404,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -20403,6 +20489,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -20429,6 +20517,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -20502,6 +20592,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -20528,6 +20620,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -20558,6 +20652,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -20584,6 +20680,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -20625,6 +20723,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -20651,6 +20751,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -20687,6 +20789,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -20713,6 +20817,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -20738,6 +20844,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -20764,6 +20872,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -20847,6 +20957,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -20873,6 +20985,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -20946,6 +21060,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -20972,6 +21088,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -21002,6 +21120,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -21028,6 +21148,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -21069,6 +21191,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -21095,6 +21219,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -21131,6 +21257,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -21157,6 +21285,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -21182,6 +21312,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -21208,6 +21340,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -21249,6 +21383,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -21275,6 +21411,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -21300,6 +21438,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -21326,6 +21466,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -21367,6 +21509,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -21393,6 +21537,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -21418,6 +21564,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostCreateNestedManyWithoutUserInput
@@ -21444,6 +21592,8 @@ export namespace Prisma {
     followingCount?: number
     createdAt?: Date | string
     lastLogin?: Date | string | null
+    resetToken?: string | null
+    resetTokenExpiry?: Date | string | null
     isVerified?: boolean
     isActive?: boolean
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -21485,6 +21635,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -21511,6 +21663,8 @@ export namespace Prisma {
     followingCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     isActive?: BoolFieldUpdateOperationsInput | boolean
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
