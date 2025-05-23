@@ -186,35 +186,6 @@ exports.Prisma.FollowerScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
-exports.Prisma.BookmarkScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  postId: 'postId',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.NotificationScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  triggeredByUserId: 'triggeredByUserId',
-  notificationType: 'notificationType',
-  referenceType: 'referenceType',
-  referenceId: 'referenceId',
-  isRead: 'isRead',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.UserSettingScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  notificationsEnabled: 'notificationsEnabled',
-  directMessagePrivacy: 'directMessagePrivacy',
-  whoCanReply: 'whoCanReply',
-  themePreference: 'themePreference',
-  languagePreference: 'languagePreference',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.UserActivityScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -232,6 +203,14 @@ exports.Prisma.UserProfileTabScalarFieldEnum = {
   isVisible: 'isVisible',
   displayOrder: 'displayOrder',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RefreshTokenScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  expiresAt: 'expiresAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -257,11 +236,9 @@ exports.Prisma.ModelName = {
   Like: 'Like',
   Repost: 'Repost',
   Follower: 'Follower',
-  Bookmark: 'Bookmark',
-  Notification: 'Notification',
-  UserSetting: 'UserSetting',
   UserActivity: 'UserActivity',
-  UserProfileTab: 'UserProfileTab'
+  UserProfileTab: 'UserProfileTab',
+  RefreshToken: 'RefreshToken'
 };
 
 /**

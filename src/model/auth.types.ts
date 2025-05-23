@@ -20,3 +20,14 @@ export interface ResetPasswordInput {
   confirmPassword: string;
 }
 
+export interface AuthResponse {
+  user: {
+    id: number;
+    username: string;
+    email: string;
+    displayName: string | null;
+    isVerified: boolean;
+  };
+  token: string;
+}
+

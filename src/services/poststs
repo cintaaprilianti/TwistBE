@@ -1,0 +1,324 @@
+import { PrismaClient } from "@prisma/client";
+import {
+  PostPayload,
+  PostResponse,
+  CreateCommentRequest,
+  CreateRepostRequest,
+} from "../model/post.types";
+import { PaginationQuery } from "../model/paging";
+
+const prisma = new PrismaClient();
+export class PostService {
+  static async createPost(
+    userId: number,
+    data: PostPayload
+  ): Promise<PostResponse> {
+    const post = await prisma.post.create({
+      data: {
+        userId,
+        content: data.content,
+        parentPostId: data.parentPostId,
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            displayName: true,
+          },
+        },
+        parentPost: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                username: true,
+                displayName: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    // Update parent post comment count if this is a reply
+    if (data.parentPostId) {
+      await prisma.post.update({
+        where: { id: data.parentPostId },
+        data: { commentCount: { increment: 1 } },
+      });
+    }
+
+    return this.formatPostResponse(post);
+  }
+
+  static async getFeed(
+    userId: number,
+    pagination: PaginationQuery
+  ): Promise<PostResponse[]> {
+    // Get posts from followed users + own posts
+    const posts = await prisma.post.findMany({
+      where: {
+        OR: [
+          { userId }, // Own posts
+          {
+            user: {
+              followers: {
+                some: { userId },
+              },
+            },
+          },
+        ],
+        isDeleted: false,
+        parentPostId: null, // Only top-level posts
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            displayName: true,
+          },
+        },
+        likes: {
+          where: { userId },
+        },
+        reposts: {
+          where: { userId },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+      take: pagination.limit || 20,
+      skip: ((pagination.page || 1) - 1) * (pagination.limit || 20),
+    });
+
+    return posts.map((post) => this.formatPostResponse(post, userId));
+  }
+
+  static async getPost(postId: number, userId?: number): Promise<PostResponse> {
+    const post = await prisma.post.findUnique({
+      where: { id: postId },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            displayName: true,
+          },
+        },
+        likes: userId ? { where: { userId } } : false,
+        reposts: userId ? { where: { userId } } : false,
+        parentPost: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                username: true,
+                displayName: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    if (!post || post.isDeleted) {
+      throw new Error("Post not found");
+    }
+
+    return this.formatPostResponse(post, userId);
+  }
+
+  static async getUserPosts(
+    targetUserId: number,
+    currentUserId?: number,
+    pagination?: PaginationQuery
+  ): Promise<PostResponse[]> {
+    const posts = await prisma.post.findMany({
+      where: {
+        userId: targetUserId,
+        isDeleted: false,
+        parentPostId: null,
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            displayName: true,
+          },
+        },
+        likes: currentUserId ? { where: { userId: currentUserId } } : false,
+        reposts: currentUserId ? { where: { userId: currentUserId } } : false,
+      },
+      orderBy: { createdAt: "desc" },
+      take: pagination?.limit || 20,
+      skip: ((pagination?.page || 1) - 1) * (pagination?.limit || 20),
+    });
+
+    return posts.map((post) => this.formatPostResponse(post, currentUserId));
+  }
+
+  static async getUserLikes(
+    targetUserId: number,
+    currentUserId?: number,
+    pagination?: PaginationQuery
+  ): Promise<PostResponse[]> {
+    const likes = await prisma.like.findMany({
+      where: { userId: targetUserId },
+      include: {
+        post: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                username: true,
+                displayName: true,
+              },
+            },
+            likes: currentUserId ? { where: { userId: currentUserId } } : false,
+            reposts: currentUserId
+              ? { where: { userId: currentUserId } }
+              : false,
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+      take: pagination?.limit || 20,
+      skip: ((pagination?.page || 1) - 1) * (pagination?.limit || 20),
+    });
+
+    return likes.map((like) =>
+      this.formatPostResponse(like.post, currentUserId)
+    );
+  }
+
+  static async getUserReposts(
+    targetUserId: number,
+    currentUserId?: number,
+    pagination?: PaginationQuery
+  ): Promise<PostResponse[]> {
+    const reposts = await prisma.repost.findMany({
+      where: { userId: targetUserId },
+      include: {
+        post: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                username: true,
+                displayName: true,
+              },
+            },
+            likes: currentUserId ? { where: { userId: currentUserId } } : false,
+            reposts: currentUserId
+              ? { where: { userId: currentUserId } }
+              : false,
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+      take: pagination?.limit || 20,
+      skip: ((pagination?.page || 1) - 1) * (pagination?.limit || 20),
+    });
+
+    return reposts.map((repost) =>
+      this.formatPostResponse(repost.post, currentUserId)
+    );
+  }
+
+  static async likePost(
+    userId: number,
+    postId: number
+  ): Promise<{ isLiked: boolean }> {
+    const existing = await prisma.like.findUnique({
+      where: {
+        userId_postId: { userId, postId },
+      },
+    });
+
+    if (existing) {
+      // Unlike
+      await prisma.$transaction([
+        prisma.like.delete({ where: { id: existing.id } }),
+        prisma.post.update({
+          where: { id: postId },
+          data: { likeCount: { decrement: 1 } },
+        }),
+      ]);
+      return { isLiked: false };
+    } else {
+      // Like
+      await prisma.$transaction([
+        prisma.like.create({ data: { userId, postId } }),
+        prisma.post.update({
+          where: { id: postId },
+          data: { likeCount: { increment: 1 } },
+        }),
+      ]);
+      return { isLiked: true };
+    }
+  }
+
+  static async repost(
+    userId: number,
+    postId: number,
+    data: CreateRepostRequest
+  ): Promise<{ isReposted: boolean }> {
+    const existing = await prisma.repost.findFirst({
+      where: { userId, postId },
+    });
+
+    if (existing) {
+      // Unrepost
+      await prisma.$transaction([
+        prisma.repost.delete({ where: { id: existing.id } }),
+        prisma.post.update({
+          where: { id: postId },
+          data: { repostCount: { decrement: 1 } },
+        }),
+      ]);
+      return { isReposted: false };
+    } else {
+      // Repost
+      await prisma.$transaction([
+        prisma.repost.create({
+          data: {
+            userId,
+            postId,
+            quoteContent: data.quoteContent,
+            isQuotePost: data.isQuotePost || false,
+          },
+        }),
+        prisma.post.update({
+          where: { id: postId },
+          data: { repostCount: { increment: 1 } },
+        }),
+      ]);
+      return { isReposted: true };
+    }
+  }
+
+  private static formatPostResponse(
+    post: any,
+    currentUserId?: number
+  ): PostResponse {
+    return {
+      id: post.id,
+      content: post.content,
+      likeCount: post.likeCount,
+      commentCount: post.commentCount,
+      repostCount: post.repostCount,
+      createdAt: post.createdAt,
+      updatedAt: post.updatedAt,
+      isEdited: post.isEdited,
+      isPinned: post.isPinned,
+      user: post.user,
+      parentPost: post.parentPost
+        ? this.formatPostResponse(post.parentPost)
+        : null,
+      isLiked: currentUserId ? post.likes?.length > 0 : undefined,
+      isReposted: currentUserId ? post.reposts?.length > 0 : undefined,
+    };
+  }
+}

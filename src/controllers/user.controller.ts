@@ -1,12 +1,12 @@
 import { prisma } from "../application/database";
 import { Context } from "hono";
 import { verifyJwt } from "../utils/jwt";
-import { updateUserService } from "../services/user.service";
-
+import { UserService } from "../services/user.service";
 
 export const getAllUsers = async (c: Context) => {
   try {
-    const dataUser = await prisma.user.findMany();
+    // FIXED: Use UserService instead of direct prisma call
+    const dataUser = await UserService.getAllUsers();
 
     if (!dataUser || dataUser.length === 0) {
       return c.json({ message: "Data user kosong" }, 404);
@@ -21,7 +21,7 @@ export const getAllUsers = async (c: Context) => {
   }
 };
 
-export const updateUserProfile = async (c: Context) => {
+export const updateUserProfile = async (c: Context) => {  
   try {
     const userId = c.var.userId;
     const data = await c.req.json();
@@ -33,7 +33,7 @@ export const updateUserProfile = async (c: Context) => {
       );
     }
 
-    const updatedUser = await updateUserService(userId, data);
+    const updatedUser = await UserService.updateProfile(userId, data);
 
     return c.json({
       message: "Profil berhasil diperbarui",
@@ -65,12 +65,31 @@ export const deleteUserAccount = async (c: Context) => {
 
     const userId = payload.id;
 
-    // Hapus akun user dari database
-    await prisma.user.delete({ where: { id: userId } });
+    // FIXED: Use UserService instead of direct prisma call
+    await UserService.deleteUser(userId);
 
     return c.json({ message: "Akun berhasil dihapus" });
   } catch (error) {
     console.error(error);
     return c.json({ message: "Gagal menghapus akun", error }, 500);
+  }
+};
+
+export const searchUsers = async (c: Context) => {
+  try {
+    const query = c.req.query("q") || "";
+    const result = await UserService.searchUsers(query);
+    return c.json(result);
+  } catch (error) {
+    return c.json({ message: "Error searching users", error }, 500);
+  }
+};
+
+export const getUserSuggestions = async (c: Context) => {
+  try {
+    const result = await UserService.getSuggestions();
+    return c.json(result);
+  } catch (error) {
+    return c.json({ message: "Error getting user suggestions", error }, 500);
   }
 };
