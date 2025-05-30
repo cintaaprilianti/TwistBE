@@ -42,9 +42,8 @@ export const deletePost = async (userId: number, postId: number) => {
   const post = await prisma.post.findUnique({ where: { id: postId } });
   if (!post || post.userId !== userId || post.isDeleted) return false;
 
-  await prisma.post.update({
+  await prisma.post.delete({
     where: { id: postId },
-    data: { isDeleted: true },
   });
   return true;
 };
