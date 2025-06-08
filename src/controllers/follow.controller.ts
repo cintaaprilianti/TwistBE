@@ -27,9 +27,23 @@ export const getFollowing = async (c: Context) => {
   return c.json(following.map((f) => f.following));
 };
 
-export const getFollowStatus = async (c: Context) => {
-  const userId = c.get("user").id;
-  const targetId = Number(c.req.param("userId"));
-  const isFollowing = await FollowService.checkFollowStatus(userId, targetId);
-  return c.json({ isFollowing });
-};
+  export const getFollowStatus = async (c: Context) => {
+    const currentUserId = c.get("user").id;
+    const targetId = Number(c.req.param("userId"));
+
+    if (isNaN(targetId)) {
+      return c.json({ error: "Invalid userId" }, 400);
+    }
+
+  
+    const [isFollowing, targetUser] = await Promise.all([
+      FollowService.checkFollowStatus(currentUserId, targetId),
+      FollowService.getTargetUserProfile(targetId),
+    ]);
+
+    if (!targetUser) {
+      return c.json({ error: "Target user not found" }, 404);
+    }
+
+    return c.json({ isFollowing, targetUser });
+  };

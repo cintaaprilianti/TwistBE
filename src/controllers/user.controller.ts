@@ -48,6 +48,7 @@ export const updateUserProfile = async (c: Context) => {
   }
 };
 
+
 export const deleteUserAccount = async (c: Context) => {
   try {
     const authHeader = c.req.header("authorization");
@@ -64,24 +65,22 @@ export const deleteUserAccount = async (c: Context) => {
     }
 
     const userId = payload.id;
+    if (!userId || typeof userId !== "number") {
+      return c.json({ message: "ID pengguna tidak valid" }, 400);
+    }
 
-    // FIXED: Use UserService instead of direct prisma call
+    const success = await UserService.deleteUser(userId);
+    if (!success) {
+      return c.json({ message: "Pengguna tidak ditemukan" }, 404);
+    }
+
+
     await UserService.deleteUser(userId);
 
     return c.json({ message: "Akun berhasil dihapus" });
   } catch (error) {
     console.error(error);
     return c.json({ message: "Gagal menghapus akun", error }, 500);
-  }
-};
-
-export const searchUsers = async (c: Context) => {
-  try {
-    const query = c.req.query("q") || "";
-    const result = await UserService.searchUsers(query);
-    return c.json(result);
-  } catch (error) {
-    return c.json({ message: "Error searching users", error }, 500);
   }
 };
 

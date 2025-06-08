@@ -86,4 +86,19 @@ export class FollowService {
 
     return !!follow;
   }
+  
+  static async getTargetUserProfile(userId: number) {
+    return prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        username: true,
+        displayName: true,
+        bio: true,
+        followerCount: true,
+        followingCount: true,
+        isVerified: true,
+      },
+    });
+  }
 }
