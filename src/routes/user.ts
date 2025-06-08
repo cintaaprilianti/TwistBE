@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { deleteUserAccount, getAllUsers, updateUserProfile, searchUsers } from "../controllers/user.controller";
+import { deleteUserAccount, getAllUsers, updateUserProfile } from "../controllers/user.controller";
 import { authMiddleware } from "../middleware/auth";
 
 const user = new Hono();
