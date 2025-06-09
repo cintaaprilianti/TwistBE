@@ -186,25 +186,6 @@ exports.Prisma.FollowerScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
-exports.Prisma.UserActivityScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  activityType: 'activityType',
-  referenceType: 'referenceType',
-  referenceId: 'referenceId',
-  createdAt: 'createdAt',
-  showInProfile: 'showInProfile'
-};
-
-exports.Prisma.UserProfileTabScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  tabName: 'tabName',
-  isVisible: 'isVisible',
-  displayOrder: 'displayOrder',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.RefreshTokenScalarFieldEnum = {
   id: 'id',
   token: 'token',
@@ -236,8 +217,6 @@ exports.Prisma.ModelName = {
   Like: 'Like',
   Repost: 'Repost',
   Follower: 'Follower',
-  UserActivity: 'UserActivity',
-  UserProfileTab: 'UserProfileTab',
   RefreshToken: 'RefreshToken'
 };
 

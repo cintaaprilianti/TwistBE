@@ -2,7 +2,6 @@ import { PrismaClient } from "../generated/prisma";
 import {
   UpdateProfileRequest,
   UserProfile,
-  SearchUsersQuery,
   UserSettingsRequest,
   UserSearchResult,
 } from "../model/user.types";
@@ -83,7 +82,6 @@ export class UserService {
       throw new Error("Cannot follow yourself");
     }
 
-    // Check if already following
     const existing = await prisma.follower.findUnique({
       where: {
         userId_followingId: {

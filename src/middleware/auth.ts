@@ -1,28 +1,46 @@
-import { MiddlewareHandler } from "hono";
-import jwt from "jsonwebtoken"; 
+import { Context, Next } from "hono";
+import { verifyJwt } from "../utils/jwt"; 
+interface TokenPayload {
+  id: number;
+  username: string;
+  type: string; 
+  iat: number;
+  exp: number;
+}
 
-export const authMiddleware: MiddlewareHandler = async (c, next) => {
-  const authHeader = c.req.header("Authorization");
-
-  if (!authHeader) {
-    return c.json({ error: "Token tidak ditemukan" }, 401);
-  }
-
-  const token = authHeader.split(" ")[1];
-
-  if (!token) {
-    return c.json({ error: "Token tidak valid" }, 401);
-  }
-
+export const authMiddleware = async (c: Context, next: Next) => {
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET!) as {
-      id: string;
-    };
-    c.set("user", { id: payload.id }); 
+    const authHeader = c.req.header("Authorization");
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return c.json(
+        { error: "Unauthorized: Token tidak valid atau tidak diberikan." },
+        401
+      );
+    }
+
+    const token = authHeader.split(" ")[1];
+
+    const decodedPayload = verifyJwt(token) as TokenPayload;
+
+    if (decodedPayload.type !== "login") {
+      return c.json({ error: "Unauthorized: Tipe token tidak valid." }, 401);
+    }
+
+    c.set("user", {
+      id: decodedPayload.id,
+      username: decodedPayload.username,
+    });
+
     await next();
-  } catch (err) {
-    return c.json({ error: "Token tidak valid atau kadaluarsa" }, 401);
+  } catch (error: any) {
+    
+    return c.json(
+      {
+        error: "Unauthorized: Token tidak valid atau kedaluwarsa.",
+        details: error.name, 
+      },
+      401
+    );
   }
 };
-
-

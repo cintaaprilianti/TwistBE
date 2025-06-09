@@ -44,16 +44,6 @@ export type Repost = $Result.DefaultSelection<Prisma.$RepostPayload>
  */
 export type Follower = $Result.DefaultSelection<Prisma.$FollowerPayload>
 /**
- * Model UserActivity
- * 
- */
-export type UserActivity = $Result.DefaultSelection<Prisma.$UserActivityPayload>
-/**
- * Model UserProfileTab
- * 
- */
-export type UserProfileTab = $Result.DefaultSelection<Prisma.$UserProfileTabPayload>
-/**
  * Model RefreshToken
  * 
  */
@@ -243,26 +233,6 @@ export class PrismaClient<
     * ```
     */
   get follower(): Prisma.FollowerDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.userActivity`: Exposes CRUD operations for the **UserActivity** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more UserActivities
-    * const userActivities = await prisma.userActivity.findMany()
-    * ```
-    */
-  get userActivity(): Prisma.UserActivityDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.userProfileTab`: Exposes CRUD operations for the **UserProfileTab** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more UserProfileTabs
-    * const userProfileTabs = await prisma.userProfileTab.findMany()
-    * ```
-    */
-  get userProfileTab(): Prisma.UserProfileTabDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.refreshToken`: Exposes CRUD operations for the **RefreshToken** model.
@@ -719,8 +689,6 @@ export namespace Prisma {
     Like: 'Like',
     Repost: 'Repost',
     Follower: 'Follower',
-    UserActivity: 'UserActivity',
-    UserProfileTab: 'UserProfileTab',
     RefreshToken: 'RefreshToken'
   };
 
@@ -740,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "post" | "comment" | "like" | "repost" | "follower" | "userActivity" | "userProfileTab" | "refreshToken"
+      modelProps: "user" | "post" | "comment" | "like" | "repost" | "follower" | "refreshToken"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1188,154 +1156,6 @@ export namespace Prisma {
           }
         }
       }
-      UserActivity: {
-        payload: Prisma.$UserActivityPayload<ExtArgs>
-        fields: Prisma.UserActivityFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.UserActivityFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.UserActivityFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>
-          }
-          findFirst: {
-            args: Prisma.UserActivityFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.UserActivityFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>
-          }
-          findMany: {
-            args: Prisma.UserActivityFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>[]
-          }
-          create: {
-            args: Prisma.UserActivityCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>
-          }
-          createMany: {
-            args: Prisma.UserActivityCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.UserActivityCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>[]
-          }
-          delete: {
-            args: Prisma.UserActivityDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>
-          }
-          update: {
-            args: Prisma.UserActivityUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>
-          }
-          deleteMany: {
-            args: Prisma.UserActivityDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.UserActivityUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.UserActivityUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>[]
-          }
-          upsert: {
-            args: Prisma.UserActivityUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserActivityPayload>
-          }
-          aggregate: {
-            args: Prisma.UserActivityAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateUserActivity>
-          }
-          groupBy: {
-            args: Prisma.UserActivityGroupByArgs<ExtArgs>
-            result: $Utils.Optional<UserActivityGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.UserActivityCountArgs<ExtArgs>
-            result: $Utils.Optional<UserActivityCountAggregateOutputType> | number
-          }
-        }
-      }
-      UserProfileTab: {
-        payload: Prisma.$UserProfileTabPayload<ExtArgs>
-        fields: Prisma.UserProfileTabFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.UserProfileTabFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProfileTabPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.UserProfileTabFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProfileTabPayload>
-          }
-          findFirst: {
-            args: Prisma.UserProfileTabFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProfileTabPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.UserProfileTabFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProfileTabPayload>
-          }
-          findMany: {
-            args: Prisma.UserProfileTabFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProfileTabPayload>[]
-          }
-          create: {
-            args: Prisma.UserProfileTabCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProfileTabPayload>
-          }
-          createMany: {
-            args: Prisma.UserProfileTabCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.UserProfileTabCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProfileTabPayload>[]
-          }
-          delete: {
-            args: Prisma.UserProfileTabDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProfileTabPayload>
-          }
-          update: {
-            args: Prisma.UserProfileTabUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProfileTabPayload>
-          }
-          deleteMany: {
-            args: Prisma.UserProfileTabDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.UserProfileTabUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.UserProfileTabUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProfileTabPayload>[]
-          }
-          upsert: {
-            args: Prisma.UserProfileTabUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProfileTabPayload>
-          }
-          aggregate: {
-            args: Prisma.UserProfileTabAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateUserProfileTab>
-          }
-          groupBy: {
-            args: Prisma.UserProfileTabGroupByArgs<ExtArgs>
-            result: $Utils.Optional<UserProfileTabGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.UserProfileTabCountArgs<ExtArgs>
-            result: $Utils.Optional<UserProfileTabCountAggregateOutputType> | number
-          }
-        }
-      }
       RefreshToken: {
         payload: Prisma.$RefreshTokenPayload<ExtArgs>
         fields: Prisma.RefreshTokenFieldRefs
@@ -1500,8 +1320,6 @@ export namespace Prisma {
     like?: LikeOmit
     repost?: RepostOmit
     follower?: FollowerOmit
-    userActivity?: UserActivityOmit
-    userProfileTab?: UserProfileTabOmit
     refreshToken?: RefreshTokenOmit
   }
 
@@ -1601,8 +1419,6 @@ export namespace Prisma {
     comments: number
     likes: number
     reposts: number
-    activities: number
-    profileTabs: number
     followers: number
     following: number
     refreshToken: number
@@ -1613,8 +1429,6 @@ export namespace Prisma {
     comments?: boolean | UserCountOutputTypeCountCommentsArgs
     likes?: boolean | UserCountOutputTypeCountLikesArgs
     reposts?: boolean | UserCountOutputTypeCountRepostsArgs
-    activities?: boolean | UserCountOutputTypeCountActivitiesArgs
-    profileTabs?: boolean | UserCountOutputTypeCountProfileTabsArgs
     followers?: boolean | UserCountOutputTypeCountFollowersArgs
     following?: boolean | UserCountOutputTypeCountFollowingArgs
     refreshToken?: boolean | UserCountOutputTypeCountRefreshTokenArgs
@@ -1657,20 +1471,6 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountRepostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RepostWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserActivityWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountProfileTabsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserProfileTabWhereInput
   }
 
   /**
@@ -2039,8 +1839,6 @@ export namespace Prisma {
     comments?: boolean | User$commentsArgs<ExtArgs>
     likes?: boolean | User$likesArgs<ExtArgs>
     reposts?: boolean | User$repostsArgs<ExtArgs>
-    activities?: boolean | User$activitiesArgs<ExtArgs>
-    profileTabs?: boolean | User$profileTabsArgs<ExtArgs>
     followers?: boolean | User$followersArgs<ExtArgs>
     following?: boolean | User$followingArgs<ExtArgs>
     refreshToken?: boolean | User$refreshTokenArgs<ExtArgs>
@@ -2104,8 +1902,6 @@ export namespace Prisma {
     comments?: boolean | User$commentsArgs<ExtArgs>
     likes?: boolean | User$likesArgs<ExtArgs>
     reposts?: boolean | User$repostsArgs<ExtArgs>
-    activities?: boolean | User$activitiesArgs<ExtArgs>
-    profileTabs?: boolean | User$profileTabsArgs<ExtArgs>
     followers?: boolean | User$followersArgs<ExtArgs>
     following?: boolean | User$followingArgs<ExtArgs>
     refreshToken?: boolean | User$refreshTokenArgs<ExtArgs>
@@ -2121,8 +1917,6 @@ export namespace Prisma {
       comments: Prisma.$CommentPayload<ExtArgs>[]
       likes: Prisma.$LikePayload<ExtArgs>[]
       reposts: Prisma.$RepostPayload<ExtArgs>[]
-      activities: Prisma.$UserActivityPayload<ExtArgs>[]
-      profileTabs: Prisma.$UserProfileTabPayload<ExtArgs>[]
       followers: Prisma.$FollowerPayload<ExtArgs>[]
       following: Prisma.$FollowerPayload<ExtArgs>[]
       refreshToken: Prisma.$RefreshTokenPayload<ExtArgs>[]
@@ -2540,8 +2334,6 @@ export namespace Prisma {
     comments<T extends User$commentsArgs<ExtArgs> = {}>(args?: Subset<T, User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     likes<T extends User$likesArgs<ExtArgs> = {}>(args?: Subset<T, User$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reposts<T extends User$repostsArgs<ExtArgs> = {}>(args?: Subset<T, User$repostsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    activities<T extends User$activitiesArgs<ExtArgs> = {}>(args?: Subset<T, User$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    profileTabs<T extends User$profileTabsArgs<ExtArgs> = {}>(args?: Subset<T, User$profileTabsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProfileTabPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     followers<T extends User$followersArgs<ExtArgs> = {}>(args?: Subset<T, User$followersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     following<T extends User$followingArgs<ExtArgs> = {}>(args?: Subset<T, User$followingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     refreshToken<T extends User$refreshTokenArgs<ExtArgs> = {}>(args?: Subset<T, User$refreshTokenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3069,54 +2861,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: RepostScalarFieldEnum | RepostScalarFieldEnum[]
-  }
-
-  /**
-   * User.activities
-   */
-  export type User$activitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserActivity
-     */
-    omit?: UserActivityOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    where?: UserActivityWhereInput
-    orderBy?: UserActivityOrderByWithRelationInput | UserActivityOrderByWithRelationInput[]
-    cursor?: UserActivityWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserActivityScalarFieldEnum | UserActivityScalarFieldEnum[]
-  }
-
-  /**
-   * User.profileTabs
-   */
-  export type User$profileTabsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProfileTab
-     */
-    select?: UserProfileTabSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProfileTab
-     */
-    omit?: UserProfileTabOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProfileTabInclude<ExtArgs> | null
-    where?: UserProfileTabWhereInput
-    orderBy?: UserProfileTabOrderByWithRelationInput | UserProfileTabOrderByWithRelationInput[]
-    cursor?: UserProfileTabWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserProfileTabScalarFieldEnum | UserProfileTabScalarFieldEnum[]
   }
 
   /**
@@ -9013,2245 +8757,6 @@ export namespace Prisma {
 
 
   /**
-   * Model UserActivity
-   */
-
-  export type AggregateUserActivity = {
-    _count: UserActivityCountAggregateOutputType | null
-    _avg: UserActivityAvgAggregateOutputType | null
-    _sum: UserActivitySumAggregateOutputType | null
-    _min: UserActivityMinAggregateOutputType | null
-    _max: UserActivityMaxAggregateOutputType | null
-  }
-
-  export type UserActivityAvgAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    referenceId: number | null
-  }
-
-  export type UserActivitySumAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    referenceId: number | null
-  }
-
-  export type UserActivityMinAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    activityType: string | null
-    referenceType: string | null
-    referenceId: number | null
-    createdAt: Date | null
-    showInProfile: boolean | null
-  }
-
-  export type UserActivityMaxAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    activityType: string | null
-    referenceType: string | null
-    referenceId: number | null
-    createdAt: Date | null
-    showInProfile: boolean | null
-  }
-
-  export type UserActivityCountAggregateOutputType = {
-    id: number
-    userId: number
-    activityType: number
-    referenceType: number
-    referenceId: number
-    createdAt: number
-    showInProfile: number
-    _all: number
-  }
-
-
-  export type UserActivityAvgAggregateInputType = {
-    id?: true
-    userId?: true
-    referenceId?: true
-  }
-
-  export type UserActivitySumAggregateInputType = {
-    id?: true
-    userId?: true
-    referenceId?: true
-  }
-
-  export type UserActivityMinAggregateInputType = {
-    id?: true
-    userId?: true
-    activityType?: true
-    referenceType?: true
-    referenceId?: true
-    createdAt?: true
-    showInProfile?: true
-  }
-
-  export type UserActivityMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    activityType?: true
-    referenceType?: true
-    referenceId?: true
-    createdAt?: true
-    showInProfile?: true
-  }
-
-  export type UserActivityCountAggregateInputType = {
-    id?: true
-    userId?: true
-    activityType?: true
-    referenceType?: true
-    referenceId?: true
-    createdAt?: true
-    showInProfile?: true
-    _all?: true
-  }
-
-  export type UserActivityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which UserActivity to aggregate.
-     */
-    where?: UserActivityWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserActivities to fetch.
-     */
-    orderBy?: UserActivityOrderByWithRelationInput | UserActivityOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: UserActivityWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserActivities from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserActivities.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned UserActivities
-    **/
-    _count?: true | UserActivityCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: UserActivityAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UserActivitySumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: UserActivityMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: UserActivityMaxAggregateInputType
-  }
-
-  export type GetUserActivityAggregateType<T extends UserActivityAggregateArgs> = {
-        [P in keyof T & keyof AggregateUserActivity]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateUserActivity[P]>
-      : GetScalarType<T[P], AggregateUserActivity[P]>
-  }
-
-
-
-
-  export type UserActivityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserActivityWhereInput
-    orderBy?: UserActivityOrderByWithAggregationInput | UserActivityOrderByWithAggregationInput[]
-    by: UserActivityScalarFieldEnum[] | UserActivityScalarFieldEnum
-    having?: UserActivityScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: UserActivityCountAggregateInputType | true
-    _avg?: UserActivityAvgAggregateInputType
-    _sum?: UserActivitySumAggregateInputType
-    _min?: UserActivityMinAggregateInputType
-    _max?: UserActivityMaxAggregateInputType
-  }
-
-  export type UserActivityGroupByOutputType = {
-    id: number
-    userId: number
-    activityType: string
-    referenceType: string
-    referenceId: number
-    createdAt: Date
-    showInProfile: boolean
-    _count: UserActivityCountAggregateOutputType | null
-    _avg: UserActivityAvgAggregateOutputType | null
-    _sum: UserActivitySumAggregateOutputType | null
-    _min: UserActivityMinAggregateOutputType | null
-    _max: UserActivityMaxAggregateOutputType | null
-  }
-
-  type GetUserActivityGroupByPayload<T extends UserActivityGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<UserActivityGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof UserActivityGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], UserActivityGroupByOutputType[P]>
-            : GetScalarType<T[P], UserActivityGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type UserActivitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    activityType?: boolean
-    referenceType?: boolean
-    referenceId?: boolean
-    createdAt?: boolean
-    showInProfile?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userActivity"]>
-
-  export type UserActivitySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    activityType?: boolean
-    referenceType?: boolean
-    referenceId?: boolean
-    createdAt?: boolean
-    showInProfile?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userActivity"]>
-
-  export type UserActivitySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    activityType?: boolean
-    referenceType?: boolean
-    referenceId?: boolean
-    createdAt?: boolean
-    showInProfile?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userActivity"]>
-
-  export type UserActivitySelectScalar = {
-    id?: boolean
-    userId?: boolean
-    activityType?: boolean
-    referenceType?: boolean
-    referenceId?: boolean
-    createdAt?: boolean
-    showInProfile?: boolean
-  }
-
-  export type UserActivityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "activityType" | "referenceType" | "referenceId" | "createdAt" | "showInProfile", ExtArgs["result"]["userActivity"]>
-  export type UserActivityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type UserActivityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type UserActivityIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-  export type $UserActivityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "UserActivity"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      userId: number
-      activityType: string
-      referenceType: string
-      referenceId: number
-      createdAt: Date
-      showInProfile: boolean
-    }, ExtArgs["result"]["userActivity"]>
-    composites: {}
-  }
-
-  type UserActivityGetPayload<S extends boolean | null | undefined | UserActivityDefaultArgs> = $Result.GetResult<Prisma.$UserActivityPayload, S>
-
-  type UserActivityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<UserActivityFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: UserActivityCountAggregateInputType | true
-    }
-
-  export interface UserActivityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserActivity'], meta: { name: 'UserActivity' } }
-    /**
-     * Find zero or one UserActivity that matches the filter.
-     * @param {UserActivityFindUniqueArgs} args - Arguments to find a UserActivity
-     * @example
-     * // Get one UserActivity
-     * const userActivity = await prisma.userActivity.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends UserActivityFindUniqueArgs>(args: SelectSubset<T, UserActivityFindUniqueArgs<ExtArgs>>): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one UserActivity that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {UserActivityFindUniqueOrThrowArgs} args - Arguments to find a UserActivity
-     * @example
-     * // Get one UserActivity
-     * const userActivity = await prisma.userActivity.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends UserActivityFindUniqueOrThrowArgs>(args: SelectSubset<T, UserActivityFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first UserActivity that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserActivityFindFirstArgs} args - Arguments to find a UserActivity
-     * @example
-     * // Get one UserActivity
-     * const userActivity = await prisma.userActivity.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends UserActivityFindFirstArgs>(args?: SelectSubset<T, UserActivityFindFirstArgs<ExtArgs>>): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first UserActivity that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserActivityFindFirstOrThrowArgs} args - Arguments to find a UserActivity
-     * @example
-     * // Get one UserActivity
-     * const userActivity = await prisma.userActivity.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends UserActivityFindFirstOrThrowArgs>(args?: SelectSubset<T, UserActivityFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more UserActivities that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserActivityFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all UserActivities
-     * const userActivities = await prisma.userActivity.findMany()
-     * 
-     * // Get first 10 UserActivities
-     * const userActivities = await prisma.userActivity.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const userActivityWithIdOnly = await prisma.userActivity.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends UserActivityFindManyArgs>(args?: SelectSubset<T, UserActivityFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a UserActivity.
-     * @param {UserActivityCreateArgs} args - Arguments to create a UserActivity.
-     * @example
-     * // Create one UserActivity
-     * const UserActivity = await prisma.userActivity.create({
-     *   data: {
-     *     // ... data to create a UserActivity
-     *   }
-     * })
-     * 
-     */
-    create<T extends UserActivityCreateArgs>(args: SelectSubset<T, UserActivityCreateArgs<ExtArgs>>): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many UserActivities.
-     * @param {UserActivityCreateManyArgs} args - Arguments to create many UserActivities.
-     * @example
-     * // Create many UserActivities
-     * const userActivity = await prisma.userActivity.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends UserActivityCreateManyArgs>(args?: SelectSubset<T, UserActivityCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many UserActivities and returns the data saved in the database.
-     * @param {UserActivityCreateManyAndReturnArgs} args - Arguments to create many UserActivities.
-     * @example
-     * // Create many UserActivities
-     * const userActivity = await prisma.userActivity.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many UserActivities and only return the `id`
-     * const userActivityWithIdOnly = await prisma.userActivity.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends UserActivityCreateManyAndReturnArgs>(args?: SelectSubset<T, UserActivityCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a UserActivity.
-     * @param {UserActivityDeleteArgs} args - Arguments to delete one UserActivity.
-     * @example
-     * // Delete one UserActivity
-     * const UserActivity = await prisma.userActivity.delete({
-     *   where: {
-     *     // ... filter to delete one UserActivity
-     *   }
-     * })
-     * 
-     */
-    delete<T extends UserActivityDeleteArgs>(args: SelectSubset<T, UserActivityDeleteArgs<ExtArgs>>): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one UserActivity.
-     * @param {UserActivityUpdateArgs} args - Arguments to update one UserActivity.
-     * @example
-     * // Update one UserActivity
-     * const userActivity = await prisma.userActivity.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends UserActivityUpdateArgs>(args: SelectSubset<T, UserActivityUpdateArgs<ExtArgs>>): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more UserActivities.
-     * @param {UserActivityDeleteManyArgs} args - Arguments to filter UserActivities to delete.
-     * @example
-     * // Delete a few UserActivities
-     * const { count } = await prisma.userActivity.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends UserActivityDeleteManyArgs>(args?: SelectSubset<T, UserActivityDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more UserActivities.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserActivityUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many UserActivities
-     * const userActivity = await prisma.userActivity.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends UserActivityUpdateManyArgs>(args: SelectSubset<T, UserActivityUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more UserActivities and returns the data updated in the database.
-     * @param {UserActivityUpdateManyAndReturnArgs} args - Arguments to update many UserActivities.
-     * @example
-     * // Update many UserActivities
-     * const userActivity = await prisma.userActivity.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more UserActivities and only return the `id`
-     * const userActivityWithIdOnly = await prisma.userActivity.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends UserActivityUpdateManyAndReturnArgs>(args: SelectSubset<T, UserActivityUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one UserActivity.
-     * @param {UserActivityUpsertArgs} args - Arguments to update or create a UserActivity.
-     * @example
-     * // Update or create a UserActivity
-     * const userActivity = await prisma.userActivity.upsert({
-     *   create: {
-     *     // ... data to create a UserActivity
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the UserActivity we want to update
-     *   }
-     * })
-     */
-    upsert<T extends UserActivityUpsertArgs>(args: SelectSubset<T, UserActivityUpsertArgs<ExtArgs>>): Prisma__UserActivityClient<$Result.GetResult<Prisma.$UserActivityPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of UserActivities.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserActivityCountArgs} args - Arguments to filter UserActivities to count.
-     * @example
-     * // Count the number of UserActivities
-     * const count = await prisma.userActivity.count({
-     *   where: {
-     *     // ... the filter for the UserActivities we want to count
-     *   }
-     * })
-    **/
-    count<T extends UserActivityCountArgs>(
-      args?: Subset<T, UserActivityCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], UserActivityCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a UserActivity.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserActivityAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends UserActivityAggregateArgs>(args: Subset<T, UserActivityAggregateArgs>): Prisma.PrismaPromise<GetUserActivityAggregateType<T>>
-
-    /**
-     * Group by UserActivity.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserActivityGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends UserActivityGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: UserActivityGroupByArgs['orderBy'] }
-        : { orderBy?: UserActivityGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, UserActivityGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserActivityGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the UserActivity model
-   */
-  readonly fields: UserActivityFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for UserActivity.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__UserActivityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the UserActivity model
-   */
-  interface UserActivityFieldRefs {
-    readonly id: FieldRef<"UserActivity", 'Int'>
-    readonly userId: FieldRef<"UserActivity", 'Int'>
-    readonly activityType: FieldRef<"UserActivity", 'String'>
-    readonly referenceType: FieldRef<"UserActivity", 'String'>
-    readonly referenceId: FieldRef<"UserActivity", 'Int'>
-    readonly createdAt: FieldRef<"UserActivity", 'DateTime'>
-    readonly showInProfile: FieldRef<"UserActivity", 'Boolean'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * UserActivity findUnique
-   */
-  export type UserActivityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserActivity
-     */
-    omit?: UserActivityOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * Filter, which UserActivity to fetch.
-     */
-    where: UserActivityWhereUniqueInput
-  }
-
-  /**
-   * UserActivity findUniqueOrThrow
-   */
-  export type UserActivityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserActivity
-     */
-    omit?: UserActivityOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * Filter, which UserActivity to fetch.
-     */
-    where: UserActivityWhereUniqueInput
-  }
-
-  /**
-   * UserActivity findFirst
-   */
-  export type UserActivityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserActivity
-     */
-    omit?: UserActivityOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * Filter, which UserActivity to fetch.
-     */
-    where?: UserActivityWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserActivities to fetch.
-     */
-    orderBy?: UserActivityOrderByWithRelationInput | UserActivityOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for UserActivities.
-     */
-    cursor?: UserActivityWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserActivities from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserActivities.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of UserActivities.
-     */
-    distinct?: UserActivityScalarFieldEnum | UserActivityScalarFieldEnum[]
-  }
-
-  /**
-   * UserActivity findFirstOrThrow
-   */
-  export type UserActivityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserActivity
-     */
-    omit?: UserActivityOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * Filter, which UserActivity to fetch.
-     */
-    where?: UserActivityWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserActivities to fetch.
-     */
-    orderBy?: UserActivityOrderByWithRelationInput | UserActivityOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for UserActivities.
-     */
-    cursor?: UserActivityWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserActivities from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserActivities.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of UserActivities.
-     */
-    distinct?: UserActivityScalarFieldEnum | UserActivityScalarFieldEnum[]
-  }
-
-  /**
-   * UserActivity findMany
-   */
-  export type UserActivityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserActivity
-     */
-    omit?: UserActivityOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * Filter, which UserActivities to fetch.
-     */
-    where?: UserActivityWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserActivities to fetch.
-     */
-    orderBy?: UserActivityOrderByWithRelationInput | UserActivityOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing UserActivities.
-     */
-    cursor?: UserActivityWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserActivities from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserActivities.
-     */
-    skip?: number
-    distinct?: UserActivityScalarFieldEnum | UserActivityScalarFieldEnum[]
-  }
-
-  /**
-   * UserActivity create
-   */
-  export type UserActivityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserActivity
-     */
-    omit?: UserActivityOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * The data needed to create a UserActivity.
-     */
-    data: XOR<UserActivityCreateInput, UserActivityUncheckedCreateInput>
-  }
-
-  /**
-   * UserActivity createMany
-   */
-  export type UserActivityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many UserActivities.
-     */
-    data: UserActivityCreateManyInput | UserActivityCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * UserActivity createManyAndReturn
-   */
-  export type UserActivityCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserActivity
-     */
-    omit?: UserActivityOmit<ExtArgs> | null
-    /**
-     * The data used to create many UserActivities.
-     */
-    data: UserActivityCreateManyInput | UserActivityCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserActivityIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * UserActivity update
-   */
-  export type UserActivityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserActivity
-     */
-    omit?: UserActivityOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * The data needed to update a UserActivity.
-     */
-    data: XOR<UserActivityUpdateInput, UserActivityUncheckedUpdateInput>
-    /**
-     * Choose, which UserActivity to update.
-     */
-    where: UserActivityWhereUniqueInput
-  }
-
-  /**
-   * UserActivity updateMany
-   */
-  export type UserActivityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update UserActivities.
-     */
-    data: XOR<UserActivityUpdateManyMutationInput, UserActivityUncheckedUpdateManyInput>
-    /**
-     * Filter which UserActivities to update
-     */
-    where?: UserActivityWhereInput
-    /**
-     * Limit how many UserActivities to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * UserActivity updateManyAndReturn
-   */
-  export type UserActivityUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserActivity
-     */
-    omit?: UserActivityOmit<ExtArgs> | null
-    /**
-     * The data used to update UserActivities.
-     */
-    data: XOR<UserActivityUpdateManyMutationInput, UserActivityUncheckedUpdateManyInput>
-    /**
-     * Filter which UserActivities to update
-     */
-    where?: UserActivityWhereInput
-    /**
-     * Limit how many UserActivities to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserActivityIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * UserActivity upsert
-   */
-  export type UserActivityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserActivity
-     */
-    omit?: UserActivityOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * The filter to search for the UserActivity to update in case it exists.
-     */
-    where: UserActivityWhereUniqueInput
-    /**
-     * In case the UserActivity found by the `where` argument doesn't exist, create a new UserActivity with this data.
-     */
-    create: XOR<UserActivityCreateInput, UserActivityUncheckedCreateInput>
-    /**
-     * In case the UserActivity was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<UserActivityUpdateInput, UserActivityUncheckedUpdateInput>
-  }
-
-  /**
-   * UserActivity delete
-   */
-  export type UserActivityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserActivity
-     */
-    omit?: UserActivityOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-    /**
-     * Filter which UserActivity to delete.
-     */
-    where: UserActivityWhereUniqueInput
-  }
-
-  /**
-   * UserActivity deleteMany
-   */
-  export type UserActivityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which UserActivities to delete
-     */
-    where?: UserActivityWhereInput
-    /**
-     * Limit how many UserActivities to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * UserActivity without action
-   */
-  export type UserActivityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserActivity
-     */
-    select?: UserActivitySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserActivity
-     */
-    omit?: UserActivityOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserActivityInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model UserProfileTab
-   */
-
-  export type AggregateUserProfileTab = {
-    _count: UserProfileTabCountAggregateOutputType | null
-    _avg: UserProfileTabAvgAggregateOutputType | null
-    _sum: UserProfileTabSumAggregateOutputType | null
-    _min: UserProfileTabMinAggregateOutputType | null
-    _max: UserProfileTabMaxAggregateOutputType | null
-  }
-
-  export type UserProfileTabAvgAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    displayOrder: number | null
-  }
-
-  export type UserProfileTabSumAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    displayOrder: number | null
-  }
-
-  export type UserProfileTabMinAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    tabName: string | null
-    isVisible: boolean | null
-    displayOrder: number | null
-    updatedAt: Date | null
-  }
-
-  export type UserProfileTabMaxAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    tabName: string | null
-    isVisible: boolean | null
-    displayOrder: number | null
-    updatedAt: Date | null
-  }
-
-  export type UserProfileTabCountAggregateOutputType = {
-    id: number
-    userId: number
-    tabName: number
-    isVisible: number
-    displayOrder: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type UserProfileTabAvgAggregateInputType = {
-    id?: true
-    userId?: true
-    displayOrder?: true
-  }
-
-  export type UserProfileTabSumAggregateInputType = {
-    id?: true
-    userId?: true
-    displayOrder?: true
-  }
-
-  export type UserProfileTabMinAggregateInputType = {
-    id?: true
-    userId?: true
-    tabName?: true
-    isVisible?: true
-    displayOrder?: true
-    updatedAt?: true
-  }
-
-  export type UserProfileTabMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    tabName?: true
-    isVisible?: true
-    displayOrder?: true
-    updatedAt?: true
-  }
-
-  export type UserProfileTabCountAggregateInputType = {
-    id?: true
-    userId?: true
-    tabName?: true
-    isVisible?: true
-    displayOrder?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type UserProfileTabAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which UserProfileTab to aggregate.
-     */
-    where?: UserProfileTabWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserProfileTabs to fetch.
-     */
-    orderBy?: UserProfileTabOrderByWithRelationInput | UserProfileTabOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: UserProfileTabWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserProfileTabs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserProfileTabs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned UserProfileTabs
-    **/
-    _count?: true | UserProfileTabCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: UserProfileTabAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UserProfileTabSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: UserProfileTabMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: UserProfileTabMaxAggregateInputType
-  }
-
-  export type GetUserProfileTabAggregateType<T extends UserProfileTabAggregateArgs> = {
-        [P in keyof T & keyof AggregateUserProfileTab]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateUserProfileTab[P]>
-      : GetScalarType<T[P], AggregateUserProfileTab[P]>
-  }
-
-
-
-
-  export type UserProfileTabGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserProfileTabWhereInput
-    orderBy?: UserProfileTabOrderByWithAggregationInput | UserProfileTabOrderByWithAggregationInput[]
-    by: UserProfileTabScalarFieldEnum[] | UserProfileTabScalarFieldEnum
-    having?: UserProfileTabScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: UserProfileTabCountAggregateInputType | true
-    _avg?: UserProfileTabAvgAggregateInputType
-    _sum?: UserProfileTabSumAggregateInputType
-    _min?: UserProfileTabMinAggregateInputType
-    _max?: UserProfileTabMaxAggregateInputType
-  }
-
-  export type UserProfileTabGroupByOutputType = {
-    id: number
-    userId: number
-    tabName: string
-    isVisible: boolean
-    displayOrder: number | null
-    updatedAt: Date
-    _count: UserProfileTabCountAggregateOutputType | null
-    _avg: UserProfileTabAvgAggregateOutputType | null
-    _sum: UserProfileTabSumAggregateOutputType | null
-    _min: UserProfileTabMinAggregateOutputType | null
-    _max: UserProfileTabMaxAggregateOutputType | null
-  }
-
-  type GetUserProfileTabGroupByPayload<T extends UserProfileTabGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<UserProfileTabGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof UserProfileTabGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], UserProfileTabGroupByOutputType[P]>
-            : GetScalarType<T[P], UserProfileTabGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type UserProfileTabSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    tabName?: boolean
-    isVisible?: boolean
-    displayOrder?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userProfileTab"]>
-
-  export type UserProfileTabSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    tabName?: boolean
-    isVisible?: boolean
-    displayOrder?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userProfileTab"]>
-
-  export type UserProfileTabSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    tabName?: boolean
-    isVisible?: boolean
-    displayOrder?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userProfileTab"]>
-
-  export type UserProfileTabSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    tabName?: boolean
-    isVisible?: boolean
-    displayOrder?: boolean
-    updatedAt?: boolean
-  }
-
-  export type UserProfileTabOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "tabName" | "isVisible" | "displayOrder" | "updatedAt", ExtArgs["result"]["userProfileTab"]>
-  export type UserProfileTabInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type UserProfileTabIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type UserProfileTabIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-  export type $UserProfileTabPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "UserProfileTab"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      userId: number
-      tabName: string
-      isVisible: boolean
-      displayOrder: number | null
-      updatedAt: Date
-    }, ExtArgs["result"]["userProfileTab"]>
-    composites: {}
-  }
-
-  type UserProfileTabGetPayload<S extends boolean | null | undefined | UserProfileTabDefaultArgs> = $Result.GetResult<Prisma.$UserProfileTabPayload, S>
-
-  type UserProfileTabCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<UserProfileTabFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: UserProfileTabCountAggregateInputType | true
-    }
-
-  export interface UserProfileTabDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserProfileTab'], meta: { name: 'UserProfileTab' } }
-    /**
-     * Find zero or one UserProfileTab that matches the filter.
-     * @param {UserProfileTabFindUniqueArgs} args - Arguments to find a UserProfileTab
-     * @example
-     * // Get one UserProfileTab
-     * const userProfileTab = await prisma.userProfileTab.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends UserProfileTabFindUniqueArgs>(args: SelectSubset<T, UserProfileTabFindUniqueArgs<ExtArgs>>): Prisma__UserProfileTabClient<$Result.GetResult<Prisma.$UserProfileTabPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one UserProfileTab that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {UserProfileTabFindUniqueOrThrowArgs} args - Arguments to find a UserProfileTab
-     * @example
-     * // Get one UserProfileTab
-     * const userProfileTab = await prisma.userProfileTab.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends UserProfileTabFindUniqueOrThrowArgs>(args: SelectSubset<T, UserProfileTabFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserProfileTabClient<$Result.GetResult<Prisma.$UserProfileTabPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first UserProfileTab that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserProfileTabFindFirstArgs} args - Arguments to find a UserProfileTab
-     * @example
-     * // Get one UserProfileTab
-     * const userProfileTab = await prisma.userProfileTab.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends UserProfileTabFindFirstArgs>(args?: SelectSubset<T, UserProfileTabFindFirstArgs<ExtArgs>>): Prisma__UserProfileTabClient<$Result.GetResult<Prisma.$UserProfileTabPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first UserProfileTab that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserProfileTabFindFirstOrThrowArgs} args - Arguments to find a UserProfileTab
-     * @example
-     * // Get one UserProfileTab
-     * const userProfileTab = await prisma.userProfileTab.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends UserProfileTabFindFirstOrThrowArgs>(args?: SelectSubset<T, UserProfileTabFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserProfileTabClient<$Result.GetResult<Prisma.$UserProfileTabPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more UserProfileTabs that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserProfileTabFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all UserProfileTabs
-     * const userProfileTabs = await prisma.userProfileTab.findMany()
-     * 
-     * // Get first 10 UserProfileTabs
-     * const userProfileTabs = await prisma.userProfileTab.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const userProfileTabWithIdOnly = await prisma.userProfileTab.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends UserProfileTabFindManyArgs>(args?: SelectSubset<T, UserProfileTabFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProfileTabPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a UserProfileTab.
-     * @param {UserProfileTabCreateArgs} args - Arguments to create a UserProfileTab.
-     * @example
-     * // Create one UserProfileTab
-     * const UserProfileTab = await prisma.userProfileTab.create({
-     *   data: {
-     *     // ... data to create a UserProfileTab
-     *   }
-     * })
-     * 
-     */
-    create<T extends UserProfileTabCreateArgs>(args: SelectSubset<T, UserProfileTabCreateArgs<ExtArgs>>): Prisma__UserProfileTabClient<$Result.GetResult<Prisma.$UserProfileTabPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many UserProfileTabs.
-     * @param {UserProfileTabCreateManyArgs} args - Arguments to create many UserProfileTabs.
-     * @example
-     * // Create many UserProfileTabs
-     * const userProfileTab = await prisma.userProfileTab.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends UserProfileTabCreateManyArgs>(args?: SelectSubset<T, UserProfileTabCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many UserProfileTabs and returns the data saved in the database.
-     * @param {UserProfileTabCreateManyAndReturnArgs} args - Arguments to create many UserProfileTabs.
-     * @example
-     * // Create many UserProfileTabs
-     * const userProfileTab = await prisma.userProfileTab.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many UserProfileTabs and only return the `id`
-     * const userProfileTabWithIdOnly = await prisma.userProfileTab.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends UserProfileTabCreateManyAndReturnArgs>(args?: SelectSubset<T, UserProfileTabCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProfileTabPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a UserProfileTab.
-     * @param {UserProfileTabDeleteArgs} args - Arguments to delete one UserProfileTab.
-     * @example
-     * // Delete one UserProfileTab
-     * const UserProfileTab = await prisma.userProfileTab.delete({
-     *   where: {
-     *     // ... filter to delete one UserProfileTab
-     *   }
-     * })
-     * 
-     */
-    delete<T extends UserProfileTabDeleteArgs>(args: SelectSubset<T, UserProfileTabDeleteArgs<ExtArgs>>): Prisma__UserProfileTabClient<$Result.GetResult<Prisma.$UserProfileTabPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one UserProfileTab.
-     * @param {UserProfileTabUpdateArgs} args - Arguments to update one UserProfileTab.
-     * @example
-     * // Update one UserProfileTab
-     * const userProfileTab = await prisma.userProfileTab.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends UserProfileTabUpdateArgs>(args: SelectSubset<T, UserProfileTabUpdateArgs<ExtArgs>>): Prisma__UserProfileTabClient<$Result.GetResult<Prisma.$UserProfileTabPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more UserProfileTabs.
-     * @param {UserProfileTabDeleteManyArgs} args - Arguments to filter UserProfileTabs to delete.
-     * @example
-     * // Delete a few UserProfileTabs
-     * const { count } = await prisma.userProfileTab.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends UserProfileTabDeleteManyArgs>(args?: SelectSubset<T, UserProfileTabDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more UserProfileTabs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserProfileTabUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many UserProfileTabs
-     * const userProfileTab = await prisma.userProfileTab.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends UserProfileTabUpdateManyArgs>(args: SelectSubset<T, UserProfileTabUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more UserProfileTabs and returns the data updated in the database.
-     * @param {UserProfileTabUpdateManyAndReturnArgs} args - Arguments to update many UserProfileTabs.
-     * @example
-     * // Update many UserProfileTabs
-     * const userProfileTab = await prisma.userProfileTab.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more UserProfileTabs and only return the `id`
-     * const userProfileTabWithIdOnly = await prisma.userProfileTab.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends UserProfileTabUpdateManyAndReturnArgs>(args: SelectSubset<T, UserProfileTabUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProfileTabPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one UserProfileTab.
-     * @param {UserProfileTabUpsertArgs} args - Arguments to update or create a UserProfileTab.
-     * @example
-     * // Update or create a UserProfileTab
-     * const userProfileTab = await prisma.userProfileTab.upsert({
-     *   create: {
-     *     // ... data to create a UserProfileTab
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the UserProfileTab we want to update
-     *   }
-     * })
-     */
-    upsert<T extends UserProfileTabUpsertArgs>(args: SelectSubset<T, UserProfileTabUpsertArgs<ExtArgs>>): Prisma__UserProfileTabClient<$Result.GetResult<Prisma.$UserProfileTabPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of UserProfileTabs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserProfileTabCountArgs} args - Arguments to filter UserProfileTabs to count.
-     * @example
-     * // Count the number of UserProfileTabs
-     * const count = await prisma.userProfileTab.count({
-     *   where: {
-     *     // ... the filter for the UserProfileTabs we want to count
-     *   }
-     * })
-    **/
-    count<T extends UserProfileTabCountArgs>(
-      args?: Subset<T, UserProfileTabCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], UserProfileTabCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a UserProfileTab.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserProfileTabAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends UserProfileTabAggregateArgs>(args: Subset<T, UserProfileTabAggregateArgs>): Prisma.PrismaPromise<GetUserProfileTabAggregateType<T>>
-
-    /**
-     * Group by UserProfileTab.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserProfileTabGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends UserProfileTabGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: UserProfileTabGroupByArgs['orderBy'] }
-        : { orderBy?: UserProfileTabGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, UserProfileTabGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserProfileTabGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the UserProfileTab model
-   */
-  readonly fields: UserProfileTabFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for UserProfileTab.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__UserProfileTabClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the UserProfileTab model
-   */
-  interface UserProfileTabFieldRefs {
-    readonly id: FieldRef<"UserProfileTab", 'Int'>
-    readonly userId: FieldRef<"UserProfileTab", 'Int'>
-    readonly tabName: FieldRef<"UserProfileTab", 'String'>
-    readonly isVisible: FieldRef<"UserProfileTab", 'Boolean'>
-    readonly displayOrder: FieldRef<"UserProfileTab", 'Int'>
-    readonly updatedAt: FieldRef<"UserProfileTab", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * UserProfileTab findUnique
-   */
-  export type UserProfileTabFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProfileTab
-     */
-    select?: UserProfileTabSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProfileTab
-     */
-    omit?: UserProfileTabOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProfileTabInclude<ExtArgs> | null
-    /**
-     * Filter, which UserProfileTab to fetch.
-     */
-    where: UserProfileTabWhereUniqueInput
-  }
-
-  /**
-   * UserProfileTab findUniqueOrThrow
-   */
-  export type UserProfileTabFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProfileTab
-     */
-    select?: UserProfileTabSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProfileTab
-     */
-    omit?: UserProfileTabOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProfileTabInclude<ExtArgs> | null
-    /**
-     * Filter, which UserProfileTab to fetch.
-     */
-    where: UserProfileTabWhereUniqueInput
-  }
-
-  /**
-   * UserProfileTab findFirst
-   */
-  export type UserProfileTabFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProfileTab
-     */
-    select?: UserProfileTabSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProfileTab
-     */
-    omit?: UserProfileTabOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProfileTabInclude<ExtArgs> | null
-    /**
-     * Filter, which UserProfileTab to fetch.
-     */
-    where?: UserProfileTabWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserProfileTabs to fetch.
-     */
-    orderBy?: UserProfileTabOrderByWithRelationInput | UserProfileTabOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for UserProfileTabs.
-     */
-    cursor?: UserProfileTabWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserProfileTabs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserProfileTabs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of UserProfileTabs.
-     */
-    distinct?: UserProfileTabScalarFieldEnum | UserProfileTabScalarFieldEnum[]
-  }
-
-  /**
-   * UserProfileTab findFirstOrThrow
-   */
-  export type UserProfileTabFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProfileTab
-     */
-    select?: UserProfileTabSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProfileTab
-     */
-    omit?: UserProfileTabOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProfileTabInclude<ExtArgs> | null
-    /**
-     * Filter, which UserProfileTab to fetch.
-     */
-    where?: UserProfileTabWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserProfileTabs to fetch.
-     */
-    orderBy?: UserProfileTabOrderByWithRelationInput | UserProfileTabOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for UserProfileTabs.
-     */
-    cursor?: UserProfileTabWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserProfileTabs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserProfileTabs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of UserProfileTabs.
-     */
-    distinct?: UserProfileTabScalarFieldEnum | UserProfileTabScalarFieldEnum[]
-  }
-
-  /**
-   * UserProfileTab findMany
-   */
-  export type UserProfileTabFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProfileTab
-     */
-    select?: UserProfileTabSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProfileTab
-     */
-    omit?: UserProfileTabOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProfileTabInclude<ExtArgs> | null
-    /**
-     * Filter, which UserProfileTabs to fetch.
-     */
-    where?: UserProfileTabWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserProfileTabs to fetch.
-     */
-    orderBy?: UserProfileTabOrderByWithRelationInput | UserProfileTabOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing UserProfileTabs.
-     */
-    cursor?: UserProfileTabWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserProfileTabs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserProfileTabs.
-     */
-    skip?: number
-    distinct?: UserProfileTabScalarFieldEnum | UserProfileTabScalarFieldEnum[]
-  }
-
-  /**
-   * UserProfileTab create
-   */
-  export type UserProfileTabCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProfileTab
-     */
-    select?: UserProfileTabSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProfileTab
-     */
-    omit?: UserProfileTabOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProfileTabInclude<ExtArgs> | null
-    /**
-     * The data needed to create a UserProfileTab.
-     */
-    data: XOR<UserProfileTabCreateInput, UserProfileTabUncheckedCreateInput>
-  }
-
-  /**
-   * UserProfileTab createMany
-   */
-  export type UserProfileTabCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many UserProfileTabs.
-     */
-    data: UserProfileTabCreateManyInput | UserProfileTabCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * UserProfileTab createManyAndReturn
-   */
-  export type UserProfileTabCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProfileTab
-     */
-    select?: UserProfileTabSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProfileTab
-     */
-    omit?: UserProfileTabOmit<ExtArgs> | null
-    /**
-     * The data used to create many UserProfileTabs.
-     */
-    data: UserProfileTabCreateManyInput | UserProfileTabCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProfileTabIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * UserProfileTab update
-   */
-  export type UserProfileTabUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProfileTab
-     */
-    select?: UserProfileTabSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProfileTab
-     */
-    omit?: UserProfileTabOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProfileTabInclude<ExtArgs> | null
-    /**
-     * The data needed to update a UserProfileTab.
-     */
-    data: XOR<UserProfileTabUpdateInput, UserProfileTabUncheckedUpdateInput>
-    /**
-     * Choose, which UserProfileTab to update.
-     */
-    where: UserProfileTabWhereUniqueInput
-  }
-
-  /**
-   * UserProfileTab updateMany
-   */
-  export type UserProfileTabUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update UserProfileTabs.
-     */
-    data: XOR<UserProfileTabUpdateManyMutationInput, UserProfileTabUncheckedUpdateManyInput>
-    /**
-     * Filter which UserProfileTabs to update
-     */
-    where?: UserProfileTabWhereInput
-    /**
-     * Limit how many UserProfileTabs to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * UserProfileTab updateManyAndReturn
-   */
-  export type UserProfileTabUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProfileTab
-     */
-    select?: UserProfileTabSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProfileTab
-     */
-    omit?: UserProfileTabOmit<ExtArgs> | null
-    /**
-     * The data used to update UserProfileTabs.
-     */
-    data: XOR<UserProfileTabUpdateManyMutationInput, UserProfileTabUncheckedUpdateManyInput>
-    /**
-     * Filter which UserProfileTabs to update
-     */
-    where?: UserProfileTabWhereInput
-    /**
-     * Limit how many UserProfileTabs to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProfileTabIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * UserProfileTab upsert
-   */
-  export type UserProfileTabUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProfileTab
-     */
-    select?: UserProfileTabSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProfileTab
-     */
-    omit?: UserProfileTabOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProfileTabInclude<ExtArgs> | null
-    /**
-     * The filter to search for the UserProfileTab to update in case it exists.
-     */
-    where: UserProfileTabWhereUniqueInput
-    /**
-     * In case the UserProfileTab found by the `where` argument doesn't exist, create a new UserProfileTab with this data.
-     */
-    create: XOR<UserProfileTabCreateInput, UserProfileTabUncheckedCreateInput>
-    /**
-     * In case the UserProfileTab was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<UserProfileTabUpdateInput, UserProfileTabUncheckedUpdateInput>
-  }
-
-  /**
-   * UserProfileTab delete
-   */
-  export type UserProfileTabDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProfileTab
-     */
-    select?: UserProfileTabSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProfileTab
-     */
-    omit?: UserProfileTabOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProfileTabInclude<ExtArgs> | null
-    /**
-     * Filter which UserProfileTab to delete.
-     */
-    where: UserProfileTabWhereUniqueInput
-  }
-
-  /**
-   * UserProfileTab deleteMany
-   */
-  export type UserProfileTabDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which UserProfileTabs to delete
-     */
-    where?: UserProfileTabWhereInput
-    /**
-     * Limit how many UserProfileTabs to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * UserProfileTab without action
-   */
-  export type UserProfileTabDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProfileTab
-     */
-    select?: UserProfileTabSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProfileTab
-     */
-    omit?: UserProfileTabOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProfileTabInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model RefreshToken
    */
 
@@ -12445,31 +9950,6 @@ export namespace Prisma {
   export type FollowerScalarFieldEnum = (typeof FollowerScalarFieldEnum)[keyof typeof FollowerScalarFieldEnum]
 
 
-  export const UserActivityScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    activityType: 'activityType',
-    referenceType: 'referenceType',
-    referenceId: 'referenceId',
-    createdAt: 'createdAt',
-    showInProfile: 'showInProfile'
-  };
-
-  export type UserActivityScalarFieldEnum = (typeof UserActivityScalarFieldEnum)[keyof typeof UserActivityScalarFieldEnum]
-
-
-  export const UserProfileTabScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    tabName: 'tabName',
-    isVisible: 'isVisible',
-    displayOrder: 'displayOrder',
-    updatedAt: 'updatedAt'
-  };
-
-  export type UserProfileTabScalarFieldEnum = (typeof UserProfileTabScalarFieldEnum)[keyof typeof UserProfileTabScalarFieldEnum]
-
-
   export const RefreshTokenScalarFieldEnum: {
     id: 'id',
     token: 'token',
@@ -12598,8 +10078,6 @@ export namespace Prisma {
     comments?: CommentListRelationFilter
     likes?: LikeListRelationFilter
     reposts?: RepostListRelationFilter
-    activities?: UserActivityListRelationFilter
-    profileTabs?: UserProfileTabListRelationFilter
     followers?: FollowerListRelationFilter
     following?: FollowerListRelationFilter
     refreshToken?: RefreshTokenListRelationFilter
@@ -12624,8 +10102,6 @@ export namespace Prisma {
     comments?: CommentOrderByRelationAggregateInput
     likes?: LikeOrderByRelationAggregateInput
     reposts?: RepostOrderByRelationAggregateInput
-    activities?: UserActivityOrderByRelationAggregateInput
-    profileTabs?: UserProfileTabOrderByRelationAggregateInput
     followers?: FollowerOrderByRelationAggregateInput
     following?: FollowerOrderByRelationAggregateInput
     refreshToken?: RefreshTokenOrderByRelationAggregateInput
@@ -12653,8 +10129,6 @@ export namespace Prisma {
     comments?: CommentListRelationFilter
     likes?: LikeListRelationFilter
     reposts?: RepostListRelationFilter
-    activities?: UserActivityListRelationFilter
-    profileTabs?: UserProfileTabListRelationFilter
     followers?: FollowerListRelationFilter
     following?: FollowerListRelationFilter
     refreshToken?: RefreshTokenListRelationFilter
@@ -13061,135 +10535,6 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Follower"> | Date | string
   }
 
-  export type UserActivityWhereInput = {
-    AND?: UserActivityWhereInput | UserActivityWhereInput[]
-    OR?: UserActivityWhereInput[]
-    NOT?: UserActivityWhereInput | UserActivityWhereInput[]
-    id?: IntFilter<"UserActivity"> | number
-    userId?: IntFilter<"UserActivity"> | number
-    activityType?: StringFilter<"UserActivity"> | string
-    referenceType?: StringFilter<"UserActivity"> | string
-    referenceId?: IntFilter<"UserActivity"> | number
-    createdAt?: DateTimeFilter<"UserActivity"> | Date | string
-    showInProfile?: BoolFilter<"UserActivity"> | boolean
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }
-
-  export type UserActivityOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    activityType?: SortOrder
-    referenceType?: SortOrder
-    referenceId?: SortOrder
-    createdAt?: SortOrder
-    showInProfile?: SortOrder
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type UserActivityWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: UserActivityWhereInput | UserActivityWhereInput[]
-    OR?: UserActivityWhereInput[]
-    NOT?: UserActivityWhereInput | UserActivityWhereInput[]
-    userId?: IntFilter<"UserActivity"> | number
-    activityType?: StringFilter<"UserActivity"> | string
-    referenceType?: StringFilter<"UserActivity"> | string
-    referenceId?: IntFilter<"UserActivity"> | number
-    createdAt?: DateTimeFilter<"UserActivity"> | Date | string
-    showInProfile?: BoolFilter<"UserActivity"> | boolean
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
-
-  export type UserActivityOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    activityType?: SortOrder
-    referenceType?: SortOrder
-    referenceId?: SortOrder
-    createdAt?: SortOrder
-    showInProfile?: SortOrder
-    _count?: UserActivityCountOrderByAggregateInput
-    _avg?: UserActivityAvgOrderByAggregateInput
-    _max?: UserActivityMaxOrderByAggregateInput
-    _min?: UserActivityMinOrderByAggregateInput
-    _sum?: UserActivitySumOrderByAggregateInput
-  }
-
-  export type UserActivityScalarWhereWithAggregatesInput = {
-    AND?: UserActivityScalarWhereWithAggregatesInput | UserActivityScalarWhereWithAggregatesInput[]
-    OR?: UserActivityScalarWhereWithAggregatesInput[]
-    NOT?: UserActivityScalarWhereWithAggregatesInput | UserActivityScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"UserActivity"> | number
-    userId?: IntWithAggregatesFilter<"UserActivity"> | number
-    activityType?: StringWithAggregatesFilter<"UserActivity"> | string
-    referenceType?: StringWithAggregatesFilter<"UserActivity"> | string
-    referenceId?: IntWithAggregatesFilter<"UserActivity"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"UserActivity"> | Date | string
-    showInProfile?: BoolWithAggregatesFilter<"UserActivity"> | boolean
-  }
-
-  export type UserProfileTabWhereInput = {
-    AND?: UserProfileTabWhereInput | UserProfileTabWhereInput[]
-    OR?: UserProfileTabWhereInput[]
-    NOT?: UserProfileTabWhereInput | UserProfileTabWhereInput[]
-    id?: IntFilter<"UserProfileTab"> | number
-    userId?: IntFilter<"UserProfileTab"> | number
-    tabName?: StringFilter<"UserProfileTab"> | string
-    isVisible?: BoolFilter<"UserProfileTab"> | boolean
-    displayOrder?: IntNullableFilter<"UserProfileTab"> | number | null
-    updatedAt?: DateTimeFilter<"UserProfileTab"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }
-
-  export type UserProfileTabOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tabName?: SortOrder
-    isVisible?: SortOrder
-    displayOrder?: SortOrderInput | SortOrder
-    updatedAt?: SortOrder
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type UserProfileTabWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: UserProfileTabWhereInput | UserProfileTabWhereInput[]
-    OR?: UserProfileTabWhereInput[]
-    NOT?: UserProfileTabWhereInput | UserProfileTabWhereInput[]
-    userId?: IntFilter<"UserProfileTab"> | number
-    tabName?: StringFilter<"UserProfileTab"> | string
-    isVisible?: BoolFilter<"UserProfileTab"> | boolean
-    displayOrder?: IntNullableFilter<"UserProfileTab"> | number | null
-    updatedAt?: DateTimeFilter<"UserProfileTab"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
-
-  export type UserProfileTabOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tabName?: SortOrder
-    isVisible?: SortOrder
-    displayOrder?: SortOrderInput | SortOrder
-    updatedAt?: SortOrder
-    _count?: UserProfileTabCountOrderByAggregateInput
-    _avg?: UserProfileTabAvgOrderByAggregateInput
-    _max?: UserProfileTabMaxOrderByAggregateInput
-    _min?: UserProfileTabMinOrderByAggregateInput
-    _sum?: UserProfileTabSumOrderByAggregateInput
-  }
-
-  export type UserProfileTabScalarWhereWithAggregatesInput = {
-    AND?: UserProfileTabScalarWhereWithAggregatesInput | UserProfileTabScalarWhereWithAggregatesInput[]
-    OR?: UserProfileTabScalarWhereWithAggregatesInput[]
-    NOT?: UserProfileTabScalarWhereWithAggregatesInput | UserProfileTabScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"UserProfileTab"> | number
-    userId?: IntWithAggregatesFilter<"UserProfileTab"> | number
-    tabName?: StringWithAggregatesFilter<"UserProfileTab"> | string
-    isVisible?: BoolWithAggregatesFilter<"UserProfileTab"> | boolean
-    displayOrder?: IntNullableWithAggregatesFilter<"UserProfileTab"> | number | null
-    updatedAt?: DateTimeWithAggregatesFilter<"UserProfileTab"> | Date | string
-  }
-
   export type RefreshTokenWhereInput = {
     AND?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
     OR?: RefreshTokenWhereInput[]
@@ -13265,8 +10610,6 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutUserInput
     likes?: LikeCreateNestedManyWithoutUserInput
     reposts?: RepostCreateNestedManyWithoutUserInput
-    activities?: UserActivityCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabCreateNestedManyWithoutUserInput
     followers?: FollowerCreateNestedManyWithoutFollowerInput
     following?: FollowerCreateNestedManyWithoutFollowingInput
     refreshToken?: RefreshTokenCreateNestedManyWithoutUserInput
@@ -13291,8 +10634,6 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     reposts?: RepostUncheckedCreateNestedManyWithoutUserInput
-    activities?: UserActivityUncheckedCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabUncheckedCreateNestedManyWithoutUserInput
     followers?: FollowerUncheckedCreateNestedManyWithoutFollowerInput
     following?: FollowerUncheckedCreateNestedManyWithoutFollowingInput
     refreshToken?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -13316,8 +10657,6 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutUserNestedInput
     likes?: LikeUpdateManyWithoutUserNestedInput
     reposts?: RepostUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUpdateManyWithoutUserNestedInput
     followers?: FollowerUpdateManyWithoutFollowerNestedInput
     following?: FollowerUpdateManyWithoutFollowingNestedInput
     refreshToken?: RefreshTokenUpdateManyWithoutUserNestedInput
@@ -13342,8 +10681,6 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUncheckedUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUncheckedUpdateManyWithoutUserNestedInput
     followers?: FollowerUncheckedUpdateManyWithoutFollowerNestedInput
     following?: FollowerUncheckedUpdateManyWithoutFollowingNestedInput
     refreshToken?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -13733,131 +11070,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserActivityCreateInput = {
-    activityType: string
-    referenceType: string
-    referenceId: number
-    createdAt?: Date | string
-    showInProfile?: boolean
-    user: UserCreateNestedOneWithoutActivitiesInput
-  }
-
-  export type UserActivityUncheckedCreateInput = {
-    id?: number
-    userId: number
-    activityType: string
-    referenceType: string
-    referenceId: number
-    createdAt?: Date | string
-    showInProfile?: boolean
-  }
-
-  export type UserActivityUpdateInput = {
-    activityType?: StringFieldUpdateOperationsInput | string
-    referenceType?: StringFieldUpdateOperationsInput | string
-    referenceId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    showInProfile?: BoolFieldUpdateOperationsInput | boolean
-    user?: UserUpdateOneRequiredWithoutActivitiesNestedInput
-  }
-
-  export type UserActivityUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    activityType?: StringFieldUpdateOperationsInput | string
-    referenceType?: StringFieldUpdateOperationsInput | string
-    referenceId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    showInProfile?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type UserActivityCreateManyInput = {
-    id?: number
-    userId: number
-    activityType: string
-    referenceType: string
-    referenceId: number
-    createdAt?: Date | string
-    showInProfile?: boolean
-  }
-
-  export type UserActivityUpdateManyMutationInput = {
-    activityType?: StringFieldUpdateOperationsInput | string
-    referenceType?: StringFieldUpdateOperationsInput | string
-    referenceId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    showInProfile?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type UserActivityUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    activityType?: StringFieldUpdateOperationsInput | string
-    referenceType?: StringFieldUpdateOperationsInput | string
-    referenceId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    showInProfile?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type UserProfileTabCreateInput = {
-    tabName: string
-    isVisible?: boolean
-    displayOrder?: number | null
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutProfileTabsInput
-  }
-
-  export type UserProfileTabUncheckedCreateInput = {
-    id?: number
-    userId: number
-    tabName: string
-    isVisible?: boolean
-    displayOrder?: number | null
-    updatedAt?: Date | string
-  }
-
-  export type UserProfileTabUpdateInput = {
-    tabName?: StringFieldUpdateOperationsInput | string
-    isVisible?: BoolFieldUpdateOperationsInput | boolean
-    displayOrder?: NullableIntFieldUpdateOperationsInput | number | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutProfileTabsNestedInput
-  }
-
-  export type UserProfileTabUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    tabName?: StringFieldUpdateOperationsInput | string
-    isVisible?: BoolFieldUpdateOperationsInput | boolean
-    displayOrder?: NullableIntFieldUpdateOperationsInput | number | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserProfileTabCreateManyInput = {
-    id?: number
-    userId: number
-    tabName: string
-    isVisible?: boolean
-    displayOrder?: number | null
-    updatedAt?: Date | string
-  }
-
-  export type UserProfileTabUpdateManyMutationInput = {
-    tabName?: StringFieldUpdateOperationsInput | string
-    isVisible?: BoolFieldUpdateOperationsInput | boolean
-    displayOrder?: NullableIntFieldUpdateOperationsInput | number | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserProfileTabUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    tabName?: StringFieldUpdateOperationsInput | string
-    isVisible?: BoolFieldUpdateOperationsInput | boolean
-    displayOrder?: NullableIntFieldUpdateOperationsInput | number | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type RefreshTokenCreateInput = {
     token: string
     createdAt?: Date | string
@@ -14002,18 +11214,6 @@ export namespace Prisma {
     none?: RepostWhereInput
   }
 
-  export type UserActivityListRelationFilter = {
-    every?: UserActivityWhereInput
-    some?: UserActivityWhereInput
-    none?: UserActivityWhereInput
-  }
-
-  export type UserProfileTabListRelationFilter = {
-    every?: UserProfileTabWhereInput
-    some?: UserProfileTabWhereInput
-    none?: UserProfileTabWhereInput
-  }
-
   export type FollowerListRelationFilter = {
     every?: FollowerWhereInput
     some?: FollowerWhereInput
@@ -14044,14 +11244,6 @@ export namespace Prisma {
   }
 
   export type RepostOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type UserActivityOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type UserProfileTabOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -14479,87 +11671,6 @@ export namespace Prisma {
     followingId?: SortOrder
   }
 
-  export type UserActivityCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    activityType?: SortOrder
-    referenceType?: SortOrder
-    referenceId?: SortOrder
-    createdAt?: SortOrder
-    showInProfile?: SortOrder
-  }
-
-  export type UserActivityAvgOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    referenceId?: SortOrder
-  }
-
-  export type UserActivityMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    activityType?: SortOrder
-    referenceType?: SortOrder
-    referenceId?: SortOrder
-    createdAt?: SortOrder
-    showInProfile?: SortOrder
-  }
-
-  export type UserActivityMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    activityType?: SortOrder
-    referenceType?: SortOrder
-    referenceId?: SortOrder
-    createdAt?: SortOrder
-    showInProfile?: SortOrder
-  }
-
-  export type UserActivitySumOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    referenceId?: SortOrder
-  }
-
-  export type UserProfileTabCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tabName?: SortOrder
-    isVisible?: SortOrder
-    displayOrder?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type UserProfileTabAvgOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    displayOrder?: SortOrder
-  }
-
-  export type UserProfileTabMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tabName?: SortOrder
-    isVisible?: SortOrder
-    displayOrder?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type UserProfileTabMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    tabName?: SortOrder
-    isVisible?: SortOrder
-    displayOrder?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type UserProfileTabSumOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    displayOrder?: SortOrder
-  }
-
   export type RefreshTokenCountOrderByAggregateInput = {
     id?: SortOrder
     token?: SortOrder
@@ -14622,20 +11733,6 @@ export namespace Prisma {
     connect?: RepostWhereUniqueInput | RepostWhereUniqueInput[]
   }
 
-  export type UserActivityCreateNestedManyWithoutUserInput = {
-    create?: XOR<UserActivityCreateWithoutUserInput, UserActivityUncheckedCreateWithoutUserInput> | UserActivityCreateWithoutUserInput[] | UserActivityUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserActivityCreateOrConnectWithoutUserInput | UserActivityCreateOrConnectWithoutUserInput[]
-    createMany?: UserActivityCreateManyUserInputEnvelope
-    connect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-  }
-
-  export type UserProfileTabCreateNestedManyWithoutUserInput = {
-    create?: XOR<UserProfileTabCreateWithoutUserInput, UserProfileTabUncheckedCreateWithoutUserInput> | UserProfileTabCreateWithoutUserInput[] | UserProfileTabUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserProfileTabCreateOrConnectWithoutUserInput | UserProfileTabCreateOrConnectWithoutUserInput[]
-    createMany?: UserProfileTabCreateManyUserInputEnvelope
-    connect?: UserProfileTabWhereUniqueInput | UserProfileTabWhereUniqueInput[]
-  }
-
   export type FollowerCreateNestedManyWithoutFollowerInput = {
     create?: XOR<FollowerCreateWithoutFollowerInput, FollowerUncheckedCreateWithoutFollowerInput> | FollowerCreateWithoutFollowerInput[] | FollowerUncheckedCreateWithoutFollowerInput[]
     connectOrCreate?: FollowerCreateOrConnectWithoutFollowerInput | FollowerCreateOrConnectWithoutFollowerInput[]
@@ -14683,20 +11780,6 @@ export namespace Prisma {
     connectOrCreate?: RepostCreateOrConnectWithoutUserInput | RepostCreateOrConnectWithoutUserInput[]
     createMany?: RepostCreateManyUserInputEnvelope
     connect?: RepostWhereUniqueInput | RepostWhereUniqueInput[]
-  }
-
-  export type UserActivityUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<UserActivityCreateWithoutUserInput, UserActivityUncheckedCreateWithoutUserInput> | UserActivityCreateWithoutUserInput[] | UserActivityUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserActivityCreateOrConnectWithoutUserInput | UserActivityCreateOrConnectWithoutUserInput[]
-    createMany?: UserActivityCreateManyUserInputEnvelope
-    connect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-  }
-
-  export type UserProfileTabUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<UserProfileTabCreateWithoutUserInput, UserProfileTabUncheckedCreateWithoutUserInput> | UserProfileTabCreateWithoutUserInput[] | UserProfileTabUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserProfileTabCreateOrConnectWithoutUserInput | UserProfileTabCreateOrConnectWithoutUserInput[]
-    createMany?: UserProfileTabCreateManyUserInputEnvelope
-    connect?: UserProfileTabWhereUniqueInput | UserProfileTabWhereUniqueInput[]
   }
 
   export type FollowerUncheckedCreateNestedManyWithoutFollowerInput = {
@@ -14804,34 +11887,6 @@ export namespace Prisma {
     deleteMany?: RepostScalarWhereInput | RepostScalarWhereInput[]
   }
 
-  export type UserActivityUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UserActivityCreateWithoutUserInput, UserActivityUncheckedCreateWithoutUserInput> | UserActivityCreateWithoutUserInput[] | UserActivityUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserActivityCreateOrConnectWithoutUserInput | UserActivityCreateOrConnectWithoutUserInput[]
-    upsert?: UserActivityUpsertWithWhereUniqueWithoutUserInput | UserActivityUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UserActivityCreateManyUserInputEnvelope
-    set?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    disconnect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    delete?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    connect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    update?: UserActivityUpdateWithWhereUniqueWithoutUserInput | UserActivityUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UserActivityUpdateManyWithWhereWithoutUserInput | UserActivityUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UserActivityScalarWhereInput | UserActivityScalarWhereInput[]
-  }
-
-  export type UserProfileTabUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UserProfileTabCreateWithoutUserInput, UserProfileTabUncheckedCreateWithoutUserInput> | UserProfileTabCreateWithoutUserInput[] | UserProfileTabUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserProfileTabCreateOrConnectWithoutUserInput | UserProfileTabCreateOrConnectWithoutUserInput[]
-    upsert?: UserProfileTabUpsertWithWhereUniqueWithoutUserInput | UserProfileTabUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UserProfileTabCreateManyUserInputEnvelope
-    set?: UserProfileTabWhereUniqueInput | UserProfileTabWhereUniqueInput[]
-    disconnect?: UserProfileTabWhereUniqueInput | UserProfileTabWhereUniqueInput[]
-    delete?: UserProfileTabWhereUniqueInput | UserProfileTabWhereUniqueInput[]
-    connect?: UserProfileTabWhereUniqueInput | UserProfileTabWhereUniqueInput[]
-    update?: UserProfileTabUpdateWithWhereUniqueWithoutUserInput | UserProfileTabUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UserProfileTabUpdateManyWithWhereWithoutUserInput | UserProfileTabUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UserProfileTabScalarWhereInput | UserProfileTabScalarWhereInput[]
-  }
-
   export type FollowerUpdateManyWithoutFollowerNestedInput = {
     create?: XOR<FollowerCreateWithoutFollowerInput, FollowerUncheckedCreateWithoutFollowerInput> | FollowerCreateWithoutFollowerInput[] | FollowerUncheckedCreateWithoutFollowerInput[]
     connectOrCreate?: FollowerCreateOrConnectWithoutFollowerInput | FollowerCreateOrConnectWithoutFollowerInput[]
@@ -14928,34 +11983,6 @@ export namespace Prisma {
     update?: RepostUpdateWithWhereUniqueWithoutUserInput | RepostUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: RepostUpdateManyWithWhereWithoutUserInput | RepostUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: RepostScalarWhereInput | RepostScalarWhereInput[]
-  }
-
-  export type UserActivityUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UserActivityCreateWithoutUserInput, UserActivityUncheckedCreateWithoutUserInput> | UserActivityCreateWithoutUserInput[] | UserActivityUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserActivityCreateOrConnectWithoutUserInput | UserActivityCreateOrConnectWithoutUserInput[]
-    upsert?: UserActivityUpsertWithWhereUniqueWithoutUserInput | UserActivityUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UserActivityCreateManyUserInputEnvelope
-    set?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    disconnect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    delete?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    connect?: UserActivityWhereUniqueInput | UserActivityWhereUniqueInput[]
-    update?: UserActivityUpdateWithWhereUniqueWithoutUserInput | UserActivityUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UserActivityUpdateManyWithWhereWithoutUserInput | UserActivityUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UserActivityScalarWhereInput | UserActivityScalarWhereInput[]
-  }
-
-  export type UserProfileTabUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UserProfileTabCreateWithoutUserInput, UserProfileTabUncheckedCreateWithoutUserInput> | UserProfileTabCreateWithoutUserInput[] | UserProfileTabUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserProfileTabCreateOrConnectWithoutUserInput | UserProfileTabCreateOrConnectWithoutUserInput[]
-    upsert?: UserProfileTabUpsertWithWhereUniqueWithoutUserInput | UserProfileTabUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UserProfileTabCreateManyUserInputEnvelope
-    set?: UserProfileTabWhereUniqueInput | UserProfileTabWhereUniqueInput[]
-    disconnect?: UserProfileTabWhereUniqueInput | UserProfileTabWhereUniqueInput[]
-    delete?: UserProfileTabWhereUniqueInput | UserProfileTabWhereUniqueInput[]
-    connect?: UserProfileTabWhereUniqueInput | UserProfileTabWhereUniqueInput[]
-    update?: UserProfileTabUpdateWithWhereUniqueWithoutUserInput | UserProfileTabUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UserProfileTabUpdateManyWithWhereWithoutUserInput | UserProfileTabUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UserProfileTabScalarWhereInput | UserProfileTabScalarWhereInput[]
   }
 
   export type FollowerUncheckedUpdateManyWithoutFollowerNestedInput = {
@@ -15318,34 +12345,6 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFollowingInput, UserUpdateWithoutFollowingInput>, UserUncheckedUpdateWithoutFollowingInput>
   }
 
-  export type UserCreateNestedOneWithoutActivitiesInput = {
-    create?: XOR<UserCreateWithoutActivitiesInput, UserUncheckedCreateWithoutActivitiesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutActivitiesInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutActivitiesNestedInput = {
-    create?: XOR<UserCreateWithoutActivitiesInput, UserUncheckedCreateWithoutActivitiesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutActivitiesInput
-    upsert?: UserUpsertWithoutActivitiesInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutActivitiesInput, UserUpdateWithoutActivitiesInput>, UserUncheckedUpdateWithoutActivitiesInput>
-  }
-
-  export type UserCreateNestedOneWithoutProfileTabsInput = {
-    create?: XOR<UserCreateWithoutProfileTabsInput, UserUncheckedCreateWithoutProfileTabsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutProfileTabsInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutProfileTabsNestedInput = {
-    create?: XOR<UserCreateWithoutProfileTabsInput, UserUncheckedCreateWithoutProfileTabsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutProfileTabsInput
-    upsert?: UserUpsertWithoutProfileTabsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProfileTabsInput, UserUpdateWithoutProfileTabsInput>, UserUncheckedUpdateWithoutProfileTabsInput>
-  }
-
   export type UserCreateNestedOneWithoutRefreshTokenInput = {
     create?: XOR<UserCreateWithoutRefreshTokenInput, UserUncheckedCreateWithoutRefreshTokenInput>
     connectOrCreate?: UserCreateOrConnectWithoutRefreshTokenInput
@@ -15681,58 +12680,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserActivityCreateWithoutUserInput = {
-    activityType: string
-    referenceType: string
-    referenceId: number
-    createdAt?: Date | string
-    showInProfile?: boolean
-  }
-
-  export type UserActivityUncheckedCreateWithoutUserInput = {
-    id?: number
-    activityType: string
-    referenceType: string
-    referenceId: number
-    createdAt?: Date | string
-    showInProfile?: boolean
-  }
-
-  export type UserActivityCreateOrConnectWithoutUserInput = {
-    where: UserActivityWhereUniqueInput
-    create: XOR<UserActivityCreateWithoutUserInput, UserActivityUncheckedCreateWithoutUserInput>
-  }
-
-  export type UserActivityCreateManyUserInputEnvelope = {
-    data: UserActivityCreateManyUserInput | UserActivityCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type UserProfileTabCreateWithoutUserInput = {
-    tabName: string
-    isVisible?: boolean
-    displayOrder?: number | null
-    updatedAt?: Date | string
-  }
-
-  export type UserProfileTabUncheckedCreateWithoutUserInput = {
-    id?: number
-    tabName: string
-    isVisible?: boolean
-    displayOrder?: number | null
-    updatedAt?: Date | string
-  }
-
-  export type UserProfileTabCreateOrConnectWithoutUserInput = {
-    where: UserProfileTabWhereUniqueInput
-    create: XOR<UserProfileTabCreateWithoutUserInput, UserProfileTabUncheckedCreateWithoutUserInput>
-  }
-
-  export type UserProfileTabCreateManyUserInputEnvelope = {
-    data: UserProfileTabCreateManyUserInput | UserProfileTabCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type FollowerCreateWithoutFollowerInput = {
     createdAt?: Date | string
     following: UserCreateNestedOneWithoutFollowingInput
@@ -15916,63 +12863,6 @@ export namespace Prisma {
     isQuotePost?: BoolFilter<"Repost"> | boolean
   }
 
-  export type UserActivityUpsertWithWhereUniqueWithoutUserInput = {
-    where: UserActivityWhereUniqueInput
-    update: XOR<UserActivityUpdateWithoutUserInput, UserActivityUncheckedUpdateWithoutUserInput>
-    create: XOR<UserActivityCreateWithoutUserInput, UserActivityUncheckedCreateWithoutUserInput>
-  }
-
-  export type UserActivityUpdateWithWhereUniqueWithoutUserInput = {
-    where: UserActivityWhereUniqueInput
-    data: XOR<UserActivityUpdateWithoutUserInput, UserActivityUncheckedUpdateWithoutUserInput>
-  }
-
-  export type UserActivityUpdateManyWithWhereWithoutUserInput = {
-    where: UserActivityScalarWhereInput
-    data: XOR<UserActivityUpdateManyMutationInput, UserActivityUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type UserActivityScalarWhereInput = {
-    AND?: UserActivityScalarWhereInput | UserActivityScalarWhereInput[]
-    OR?: UserActivityScalarWhereInput[]
-    NOT?: UserActivityScalarWhereInput | UserActivityScalarWhereInput[]
-    id?: IntFilter<"UserActivity"> | number
-    userId?: IntFilter<"UserActivity"> | number
-    activityType?: StringFilter<"UserActivity"> | string
-    referenceType?: StringFilter<"UserActivity"> | string
-    referenceId?: IntFilter<"UserActivity"> | number
-    createdAt?: DateTimeFilter<"UserActivity"> | Date | string
-    showInProfile?: BoolFilter<"UserActivity"> | boolean
-  }
-
-  export type UserProfileTabUpsertWithWhereUniqueWithoutUserInput = {
-    where: UserProfileTabWhereUniqueInput
-    update: XOR<UserProfileTabUpdateWithoutUserInput, UserProfileTabUncheckedUpdateWithoutUserInput>
-    create: XOR<UserProfileTabCreateWithoutUserInput, UserProfileTabUncheckedCreateWithoutUserInput>
-  }
-
-  export type UserProfileTabUpdateWithWhereUniqueWithoutUserInput = {
-    where: UserProfileTabWhereUniqueInput
-    data: XOR<UserProfileTabUpdateWithoutUserInput, UserProfileTabUncheckedUpdateWithoutUserInput>
-  }
-
-  export type UserProfileTabUpdateManyWithWhereWithoutUserInput = {
-    where: UserProfileTabScalarWhereInput
-    data: XOR<UserProfileTabUpdateManyMutationInput, UserProfileTabUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type UserProfileTabScalarWhereInput = {
-    AND?: UserProfileTabScalarWhereInput | UserProfileTabScalarWhereInput[]
-    OR?: UserProfileTabScalarWhereInput[]
-    NOT?: UserProfileTabScalarWhereInput | UserProfileTabScalarWhereInput[]
-    id?: IntFilter<"UserProfileTab"> | number
-    userId?: IntFilter<"UserProfileTab"> | number
-    tabName?: StringFilter<"UserProfileTab"> | string
-    isVisible?: BoolFilter<"UserProfileTab"> | boolean
-    displayOrder?: IntNullableFilter<"UserProfileTab"> | number | null
-    updatedAt?: DateTimeFilter<"UserProfileTab"> | Date | string
-  }
-
   export type FollowerUpsertWithWhereUniqueWithoutFollowerInput = {
     where: FollowerWhereUniqueInput
     update: XOR<FollowerUpdateWithoutFollowerInput, FollowerUncheckedUpdateWithoutFollowerInput>
@@ -16059,8 +12949,6 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutUserInput
     likes?: LikeCreateNestedManyWithoutUserInput
     reposts?: RepostCreateNestedManyWithoutUserInput
-    activities?: UserActivityCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabCreateNestedManyWithoutUserInput
     followers?: FollowerCreateNestedManyWithoutFollowerInput
     following?: FollowerCreateNestedManyWithoutFollowingInput
     refreshToken?: RefreshTokenCreateNestedManyWithoutUserInput
@@ -16084,8 +12972,6 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     reposts?: RepostUncheckedCreateNestedManyWithoutUserInput
-    activities?: UserActivityUncheckedCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabUncheckedCreateNestedManyWithoutUserInput
     followers?: FollowerUncheckedCreateNestedManyWithoutFollowerInput
     following?: FollowerUncheckedCreateNestedManyWithoutFollowingInput
     refreshToken?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -16284,8 +13170,6 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutUserNestedInput
     likes?: LikeUpdateManyWithoutUserNestedInput
     reposts?: RepostUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUpdateManyWithoutUserNestedInput
     followers?: FollowerUpdateManyWithoutFollowerNestedInput
     following?: FollowerUpdateManyWithoutFollowingNestedInput
     refreshToken?: RefreshTokenUpdateManyWithoutUserNestedInput
@@ -16309,8 +13193,6 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUncheckedUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUncheckedUpdateManyWithoutUserNestedInput
     followers?: FollowerUncheckedUpdateManyWithoutFollowerNestedInput
     following?: FollowerUncheckedUpdateManyWithoutFollowingNestedInput
     refreshToken?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -16443,8 +13325,6 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     likes?: LikeCreateNestedManyWithoutUserInput
     reposts?: RepostCreateNestedManyWithoutUserInput
-    activities?: UserActivityCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabCreateNestedManyWithoutUserInput
     followers?: FollowerCreateNestedManyWithoutFollowerInput
     following?: FollowerCreateNestedManyWithoutFollowingInput
     refreshToken?: RefreshTokenCreateNestedManyWithoutUserInput
@@ -16468,8 +13348,6 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     reposts?: RepostUncheckedCreateNestedManyWithoutUserInput
-    activities?: UserActivityUncheckedCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabUncheckedCreateNestedManyWithoutUserInput
     followers?: FollowerUncheckedCreateNestedManyWithoutFollowerInput
     following?: FollowerUncheckedCreateNestedManyWithoutFollowingInput
     refreshToken?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -16548,8 +13426,6 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     likes?: LikeUpdateManyWithoutUserNestedInput
     reposts?: RepostUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUpdateManyWithoutUserNestedInput
     followers?: FollowerUpdateManyWithoutFollowerNestedInput
     following?: FollowerUpdateManyWithoutFollowingNestedInput
     refreshToken?: RefreshTokenUpdateManyWithoutUserNestedInput
@@ -16573,8 +13449,6 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUncheckedUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUncheckedUpdateManyWithoutUserNestedInput
     followers?: FollowerUncheckedUpdateManyWithoutFollowerNestedInput
     following?: FollowerUncheckedUpdateManyWithoutFollowingNestedInput
     refreshToken?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -16643,8 +13517,6 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     reposts?: RepostCreateNestedManyWithoutUserInput
-    activities?: UserActivityCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabCreateNestedManyWithoutUserInput
     followers?: FollowerCreateNestedManyWithoutFollowerInput
     following?: FollowerCreateNestedManyWithoutFollowingInput
     refreshToken?: RefreshTokenCreateNestedManyWithoutUserInput
@@ -16668,8 +13540,6 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     reposts?: RepostUncheckedCreateNestedManyWithoutUserInput
-    activities?: UserActivityUncheckedCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabUncheckedCreateNestedManyWithoutUserInput
     followers?: FollowerUncheckedCreateNestedManyWithoutFollowerInput
     following?: FollowerUncheckedCreateNestedManyWithoutFollowingInput
     refreshToken?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -16748,8 +13618,6 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     reposts?: RepostUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUpdateManyWithoutUserNestedInput
     followers?: FollowerUpdateManyWithoutFollowerNestedInput
     following?: FollowerUpdateManyWithoutFollowingNestedInput
     refreshToken?: RefreshTokenUpdateManyWithoutUserNestedInput
@@ -16773,8 +13641,6 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUncheckedUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUncheckedUpdateManyWithoutUserNestedInput
     followers?: FollowerUncheckedUpdateManyWithoutFollowerNestedInput
     following?: FollowerUncheckedUpdateManyWithoutFollowingNestedInput
     refreshToken?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -16843,8 +13709,6 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     likes?: LikeCreateNestedManyWithoutUserInput
-    activities?: UserActivityCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabCreateNestedManyWithoutUserInput
     followers?: FollowerCreateNestedManyWithoutFollowerInput
     following?: FollowerCreateNestedManyWithoutFollowingInput
     refreshToken?: RefreshTokenCreateNestedManyWithoutUserInput
@@ -16868,8 +13732,6 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     likes?: LikeUncheckedCreateNestedManyWithoutUserInput
-    activities?: UserActivityUncheckedCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabUncheckedCreateNestedManyWithoutUserInput
     followers?: FollowerUncheckedCreateNestedManyWithoutFollowerInput
     following?: FollowerUncheckedCreateNestedManyWithoutFollowingInput
     refreshToken?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
@@ -16948,8 +13810,6 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     likes?: LikeUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUpdateManyWithoutUserNestedInput
     followers?: FollowerUpdateManyWithoutFollowerNestedInput
     following?: FollowerUpdateManyWithoutFollowingNestedInput
     refreshToken?: RefreshTokenUpdateManyWithoutUserNestedInput
@@ -16973,8 +13833,6 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUncheckedUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUncheckedUpdateManyWithoutUserNestedInput
     followers?: FollowerUncheckedUpdateManyWithoutFollowerNestedInput
     following?: FollowerUncheckedUpdateManyWithoutFollowingNestedInput
     refreshToken?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
@@ -17044,8 +13902,6 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutUserInput
     likes?: LikeCreateNestedManyWithoutUserInput
     reposts?: RepostCreateNestedManyWithoutUserInput
-    activities?: UserActivityCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabCreateNestedManyWithoutUserInput
     following?: FollowerCreateNestedManyWithoutFollowingInput
     refreshToken?: RefreshTokenCreateNestedManyWithoutUserInput
   }
@@ -17069,8 +13925,6 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     reposts?: RepostUncheckedCreateNestedManyWithoutUserInput
-    activities?: UserActivityUncheckedCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabUncheckedCreateNestedManyWithoutUserInput
     following?: FollowerUncheckedCreateNestedManyWithoutFollowingInput
     refreshToken?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   }
@@ -17098,8 +13952,6 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutUserInput
     likes?: LikeCreateNestedManyWithoutUserInput
     reposts?: RepostCreateNestedManyWithoutUserInput
-    activities?: UserActivityCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabCreateNestedManyWithoutUserInput
     followers?: FollowerCreateNestedManyWithoutFollowerInput
     refreshToken?: RefreshTokenCreateNestedManyWithoutUserInput
   }
@@ -17123,8 +13975,6 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     reposts?: RepostUncheckedCreateNestedManyWithoutUserInput
-    activities?: UserActivityUncheckedCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabUncheckedCreateNestedManyWithoutUserInput
     followers?: FollowerUncheckedCreateNestedManyWithoutFollowerInput
     refreshToken?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   }
@@ -17163,8 +14013,6 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutUserNestedInput
     likes?: LikeUpdateManyWithoutUserNestedInput
     reposts?: RepostUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUpdateManyWithoutUserNestedInput
     following?: FollowerUpdateManyWithoutFollowingNestedInput
     refreshToken?: RefreshTokenUpdateManyWithoutUserNestedInput
   }
@@ -17188,8 +14036,6 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUncheckedUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUncheckedUpdateManyWithoutUserNestedInput
     following?: FollowerUncheckedUpdateManyWithoutFollowingNestedInput
     refreshToken?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -17223,8 +14069,6 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutUserNestedInput
     likes?: LikeUpdateManyWithoutUserNestedInput
     reposts?: RepostUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUpdateManyWithoutUserNestedInput
     followers?: FollowerUpdateManyWithoutFollowerNestedInput
     refreshToken?: RefreshTokenUpdateManyWithoutUserNestedInput
   }
@@ -17248,237 +14092,7 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUncheckedUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUncheckedUpdateManyWithoutUserNestedInput
     followers?: FollowerUncheckedUpdateManyWithoutFollowerNestedInput
-    refreshToken?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserCreateWithoutActivitiesInput = {
-    username: string
-    email: string
-    passwordHash: string
-    displayName?: string | null
-    bio?: string | null
-    followerCount?: number
-    followingCount?: number
-    createdAt?: Date | string
-    lastLogin?: Date | string | null
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-    isVerified?: boolean
-    isActive?: boolean
-    posts?: PostCreateNestedManyWithoutUserInput
-    comments?: CommentCreateNestedManyWithoutUserInput
-    likes?: LikeCreateNestedManyWithoutUserInput
-    reposts?: RepostCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabCreateNestedManyWithoutUserInput
-    followers?: FollowerCreateNestedManyWithoutFollowerInput
-    following?: FollowerCreateNestedManyWithoutFollowingInput
-    refreshToken?: RefreshTokenCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutActivitiesInput = {
-    id?: number
-    username: string
-    email: string
-    passwordHash: string
-    displayName?: string | null
-    bio?: string | null
-    followerCount?: number
-    followingCount?: number
-    createdAt?: Date | string
-    lastLogin?: Date | string | null
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-    isVerified?: boolean
-    isActive?: boolean
-    posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
-    reposts?: RepostUncheckedCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabUncheckedCreateNestedManyWithoutUserInput
-    followers?: FollowerUncheckedCreateNestedManyWithoutFollowerInput
-    following?: FollowerUncheckedCreateNestedManyWithoutFollowingInput
-    refreshToken?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutActivitiesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutActivitiesInput, UserUncheckedCreateWithoutActivitiesInput>
-  }
-
-  export type UserUpsertWithoutActivitiesInput = {
-    update: XOR<UserUpdateWithoutActivitiesInput, UserUncheckedUpdateWithoutActivitiesInput>
-    create: XOR<UserCreateWithoutActivitiesInput, UserUncheckedCreateWithoutActivitiesInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutActivitiesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutActivitiesInput, UserUncheckedUpdateWithoutActivitiesInput>
-  }
-
-  export type UserUpdateWithoutActivitiesInput = {
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    displayName?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    followerCount?: IntFieldUpdateOperationsInput | number
-    followingCount?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isVerified?: BoolFieldUpdateOperationsInput | boolean
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    posts?: PostUpdateManyWithoutUserNestedInput
-    comments?: CommentUpdateManyWithoutUserNestedInput
-    likes?: LikeUpdateManyWithoutUserNestedInput
-    reposts?: RepostUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUpdateManyWithoutUserNestedInput
-    followers?: FollowerUpdateManyWithoutFollowerNestedInput
-    following?: FollowerUpdateManyWithoutFollowingNestedInput
-    refreshToken?: RefreshTokenUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutActivitiesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    displayName?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    followerCount?: IntFieldUpdateOperationsInput | number
-    followingCount?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isVerified?: BoolFieldUpdateOperationsInput | boolean
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
-    reposts?: RepostUncheckedUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUncheckedUpdateManyWithoutUserNestedInput
-    followers?: FollowerUncheckedUpdateManyWithoutFollowerNestedInput
-    following?: FollowerUncheckedUpdateManyWithoutFollowingNestedInput
-    refreshToken?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserCreateWithoutProfileTabsInput = {
-    username: string
-    email: string
-    passwordHash: string
-    displayName?: string | null
-    bio?: string | null
-    followerCount?: number
-    followingCount?: number
-    createdAt?: Date | string
-    lastLogin?: Date | string | null
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-    isVerified?: boolean
-    isActive?: boolean
-    posts?: PostCreateNestedManyWithoutUserInput
-    comments?: CommentCreateNestedManyWithoutUserInput
-    likes?: LikeCreateNestedManyWithoutUserInput
-    reposts?: RepostCreateNestedManyWithoutUserInput
-    activities?: UserActivityCreateNestedManyWithoutUserInput
-    followers?: FollowerCreateNestedManyWithoutFollowerInput
-    following?: FollowerCreateNestedManyWithoutFollowingInput
-    refreshToken?: RefreshTokenCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutProfileTabsInput = {
-    id?: number
-    username: string
-    email: string
-    passwordHash: string
-    displayName?: string | null
-    bio?: string | null
-    followerCount?: number
-    followingCount?: number
-    createdAt?: Date | string
-    lastLogin?: Date | string | null
-    resetToken?: string | null
-    resetTokenExpiry?: Date | string | null
-    isVerified?: boolean
-    isActive?: boolean
-    posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
-    reposts?: RepostUncheckedCreateNestedManyWithoutUserInput
-    activities?: UserActivityUncheckedCreateNestedManyWithoutUserInput
-    followers?: FollowerUncheckedCreateNestedManyWithoutFollowerInput
-    following?: FollowerUncheckedCreateNestedManyWithoutFollowingInput
-    refreshToken?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutProfileTabsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutProfileTabsInput, UserUncheckedCreateWithoutProfileTabsInput>
-  }
-
-  export type UserUpsertWithoutProfileTabsInput = {
-    update: XOR<UserUpdateWithoutProfileTabsInput, UserUncheckedUpdateWithoutProfileTabsInput>
-    create: XOR<UserCreateWithoutProfileTabsInput, UserUncheckedCreateWithoutProfileTabsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutProfileTabsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutProfileTabsInput, UserUncheckedUpdateWithoutProfileTabsInput>
-  }
-
-  export type UserUpdateWithoutProfileTabsInput = {
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    displayName?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    followerCount?: IntFieldUpdateOperationsInput | number
-    followingCount?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isVerified?: BoolFieldUpdateOperationsInput | boolean
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    posts?: PostUpdateManyWithoutUserNestedInput
-    comments?: CommentUpdateManyWithoutUserNestedInput
-    likes?: LikeUpdateManyWithoutUserNestedInput
-    reposts?: RepostUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUpdateManyWithoutUserNestedInput
-    followers?: FollowerUpdateManyWithoutFollowerNestedInput
-    following?: FollowerUpdateManyWithoutFollowingNestedInput
-    refreshToken?: RefreshTokenUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutProfileTabsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    displayName?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    followerCount?: IntFieldUpdateOperationsInput | number
-    followingCount?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
-    resetTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isVerified?: BoolFieldUpdateOperationsInput | boolean
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
-    reposts?: RepostUncheckedUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUncheckedUpdateManyWithoutUserNestedInput
-    followers?: FollowerUncheckedUpdateManyWithoutFollowerNestedInput
-    following?: FollowerUncheckedUpdateManyWithoutFollowingNestedInput
     refreshToken?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -17500,8 +14114,6 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutUserInput
     likes?: LikeCreateNestedManyWithoutUserInput
     reposts?: RepostCreateNestedManyWithoutUserInput
-    activities?: UserActivityCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabCreateNestedManyWithoutUserInput
     followers?: FollowerCreateNestedManyWithoutFollowerInput
     following?: FollowerCreateNestedManyWithoutFollowingInput
   }
@@ -17525,8 +14137,6 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     reposts?: RepostUncheckedCreateNestedManyWithoutUserInput
-    activities?: UserActivityUncheckedCreateNestedManyWithoutUserInput
-    profileTabs?: UserProfileTabUncheckedCreateNestedManyWithoutUserInput
     followers?: FollowerUncheckedCreateNestedManyWithoutFollowerInput
     following?: FollowerUncheckedCreateNestedManyWithoutFollowingInput
   }
@@ -17565,8 +14175,6 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutUserNestedInput
     likes?: LikeUpdateManyWithoutUserNestedInput
     reposts?: RepostUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUpdateManyWithoutUserNestedInput
     followers?: FollowerUpdateManyWithoutFollowerNestedInput
     following?: FollowerUpdateManyWithoutFollowingNestedInput
   }
@@ -17590,8 +14198,6 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutUserNestedInput
-    activities?: UserActivityUncheckedUpdateManyWithoutUserNestedInput
-    profileTabs?: UserProfileTabUncheckedUpdateManyWithoutUserNestedInput
     followers?: FollowerUncheckedUpdateManyWithoutFollowerNestedInput
     following?: FollowerUncheckedUpdateManyWithoutFollowingNestedInput
   }
@@ -17632,23 +14238,6 @@ export namespace Prisma {
     quoteContent?: string | null
     createdAt?: Date | string
     isQuotePost?: boolean
-  }
-
-  export type UserActivityCreateManyUserInput = {
-    id?: number
-    activityType: string
-    referenceType: string
-    referenceId: number
-    createdAt?: Date | string
-    showInProfile?: boolean
-  }
-
-  export type UserProfileTabCreateManyUserInput = {
-    id?: number
-    tabName: string
-    isVisible?: boolean
-    displayOrder?: number | null
-    updatedAt?: Date | string
   }
 
   export type FollowerCreateManyFollowerInput = {
@@ -17786,55 +14375,6 @@ export namespace Prisma {
     quoteContent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isQuotePost?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type UserActivityUpdateWithoutUserInput = {
-    activityType?: StringFieldUpdateOperationsInput | string
-    referenceType?: StringFieldUpdateOperationsInput | string
-    referenceId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    showInProfile?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type UserActivityUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    activityType?: StringFieldUpdateOperationsInput | string
-    referenceType?: StringFieldUpdateOperationsInput | string
-    referenceId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    showInProfile?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type UserActivityUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    activityType?: StringFieldUpdateOperationsInput | string
-    referenceType?: StringFieldUpdateOperationsInput | string
-    referenceId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    showInProfile?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type UserProfileTabUpdateWithoutUserInput = {
-    tabName?: StringFieldUpdateOperationsInput | string
-    isVisible?: BoolFieldUpdateOperationsInput | boolean
-    displayOrder?: NullableIntFieldUpdateOperationsInput | number | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserProfileTabUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    tabName?: StringFieldUpdateOperationsInput | string
-    isVisible?: BoolFieldUpdateOperationsInput | boolean
-    displayOrder?: NullableIntFieldUpdateOperationsInput | number | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserProfileTabUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    tabName?: StringFieldUpdateOperationsInput | string
-    isVisible?: BoolFieldUpdateOperationsInput | boolean
-    displayOrder?: NullableIntFieldUpdateOperationsInput | number | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FollowerUpdateWithoutFollowerInput = {
