@@ -14,6 +14,7 @@ export const registerUser = async (c: Context) => {
   } catch (err) {
     console.error(err);
 
+    
     if (err instanceof Error) {
       return c.json({ error: err.message }, 400); // error dari input user
     }
