@@ -78,53 +78,6 @@ export class UserService {
     }
   }
 
-  // FIXED: Removed duplicate searchUsers method, kept the more comprehensive one
-  static async searchUsers(
-    query: SearchUsersQuery | string
-  ): Promise<UserProfile[] | UserSearchResult[]> {
-    // Handle both query types for backward compatibility
-    if (typeof query === "string") {
-      return await prisma.user.findMany({
-        where: {
-          OR: [
-            { username: { contains: query, mode: "insensitive" } },
-            { displayName: { contains: query, mode: "insensitive" } },
-          ],
-          isActive: true,
-        },
-        select: {
-          id: true,
-          username: true,
-          displayName: true,
-        },
-        take: 20,
-      });
-    } else {
-      return await prisma.user.findMany({
-        where: {
-          OR: [
-            { username: { contains: query.q, mode: "insensitive" } },
-            { displayName: { contains: query.q, mode: "insensitive" } },
-          ],
-          isActive: true,
-        },
-        select: {
-          id: true,
-          username: true,
-          email: true,
-          displayName: true,
-          bio: true,
-          followerCount: true,
-          followingCount: true,
-          createdAt: true,
-          isVerified: true,
-        },
-        take: query.limit || 20,
-        skip: query.offset || 0,
-      });
-    }
-  }
-
   static async followUser(userId: number, followingId: number): Promise<void> {
     if (userId === followingId) {
       throw new Error("Cannot follow yourself");
@@ -286,9 +239,19 @@ export class UserService {
   }
 
   // ADDED: Missing deleteUser method for controller
-  static async deleteUser(userId: number): Promise<void> {
+  static async deleteUser(userId: number): Promise<boolean> {
+    const existingUser = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!existingUser) {
+      return false; // user tidak ditemukan
+    }
+
     await prisma.user.delete({
       where: { id: userId },
     });
+
+    return true;
   }
 }

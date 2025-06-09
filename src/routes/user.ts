@@ -7,8 +7,8 @@ const user = new Hono();
 user.use("/user", authMiddleware);
 
 user.get("/", getAllUsers);
-
 user.patch("/update", updateUserProfile)
 user.delete("/delete", deleteUserAccount);
+
 
 export default user;

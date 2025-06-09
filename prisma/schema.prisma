@@ -1,164 +1,162 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+  // This is your Prisma schema file,
+  // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+  // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+  // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-generator client {
-  provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
-}
+  generator client {
+    provider = "prisma-client-js"
+    output   = "../src/generated/prisma"
+  }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
+  datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+  }
 
-model User {
-  id                Int       @id @default(autoincrement())
-  username          String    @unique
-  email             String    @unique
-  passwordHash      String    
-  displayName       String?
-  bio               String?
-  followerCount     Int       @default(0)
-  followingCount    Int       @default(0)
-  createdAt         DateTime  @default(now())
-  lastLogin         DateTime?
-  resetToken        String?   // untuk reset password
-  resetTokenExpiry  DateTime? // untuk reset password
-  isVerified        Boolean   @default(false)
-  isActive          Boolean   @default(true)
-  
-  posts                   Post[]
-  comments                Comment[]
-  likes                   Like[]
-  reposts                 Repost[]
-  activities              UserActivity[]
-  profileTabs             UserProfileTab[]
-  followers               Follower[]    @relation("UserFollowers")
-  following               Follower[]    @relation("UserFollowing")
-  refreshToken             RefreshToken[]
+  model User {
+    id                Int       @id @default(autoincrement())
+    username          String    @unique
+    email             String    @unique
+    passwordHash      String    
+    displayName       String?
+    bio               String?
+    followerCount     Int       @default(0)
+    followingCount    Int       @default(0)
+    createdAt         DateTime  @default(now())
+    lastLogin         DateTime?
+    resetToken        String?   // untuk reset password
+    resetTokenExpiry  DateTime? // untuk reset password
+    isVerified        Boolean   @default(false)
+    isActive          Boolean   @default(true)
+    
+    posts                   Post[]
+    comments                Comment[]
+    likes                   Like[]
+    reposts                 Repost[]
+    activities              UserActivity[]
+    profileTabs             UserProfileTab[]
+    followers               Follower[]    @relation("UserFollowers")
+    following               Follower[]    @relation("UserFollowing")
+    refreshToken             RefreshToken[]
 
-  @@map("users")
-}
+    @@map("users")
+  }
 
-model Post {
-  id            Int       @id @default(autoincrement())
-  userId        Int
-  parentPostId  Int?
-  content       String
-  likeCount     Int       @default(0)
-  commentCount  Int       @default(0)
-  repostCount   Int       @default(0)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime? @updatedAt
-  isEdited      Boolean   @default(false)
-  isPinned      Boolean   @default(false)
-  isDeleted     Boolean   @default(false)
-  
-  user          User      @relation(fields: [userId], references: [id])
-  parentPost    Post?     @relation("PostReplies", fields: [parentPostId], references: [id])
-  replies       Post[]    @relation("PostReplies")
-  comments      Comment[]
-  likes         Like[]
-  reposts       Repost[]
+  model Post {
+    id            Int       @id @default(autoincrement())
+    userId        Int
+    parentPostId  Int?
+    content       String
+    likeCount     Int       @default(0)
+    commentCount  Int       @default(0)
+    repostCount   Int       @default(0)
+    createdAt     DateTime  @default(now())
+    updatedAt     DateTime? @updatedAt
+    isEdited      Boolean   @default(false)
+    isPinned      Boolean   @default(false)
+    isDeleted     Boolean   @default(false)
+    
+    user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+    parentPost    Post?     @relation("PostReplies", fields: [parentPostId], references: [id], onDelete: Cascade)
+    replies       Post[]    @relation("PostReplies")
+    comments      Comment[]
+    likes         Like[]
+    reposts       Repost[]
 
-  @@map("posts")
-}
+    @@map("posts")
+  }
 
-model Comment {
-  id        Int       @id @default(autoincrement())
-  userId    Int
-  postId    Int
-  content   String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
-  isEdited  Boolean   @default(false)
-  isDeleted Boolean   @default(false)
-  
-  user      User      @relation(fields: [userId], references: [id])
-  post      Post      @relation(fields: [postId], references: [id])
+  model Comment {
+    id        Int       @id @default(autoincrement())
+    userId    Int
+    postId    Int
+    content   String?
+    createdAt DateTime  @default(now())
+    updatedAt DateTime? @updatedAt
+    isEdited  Boolean   @default(false)
+    isDeleted Boolean   @default(false)
+    
+    user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+    post      Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
 
-  @@map("comments")
-}
+    @@map("comments")
+  }
 
-model Like {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  postId    Int
-  createdAt DateTime @default(now())
-  
-  user      User     @relation(fields: [userId], references: [id])
-  post      Post     @relation(fields: [postId], references: [id])
+  model Like {
+    id        Int      @id @default(autoincrement())
+    userId    Int
+    postId    Int
+    createdAt DateTime @default(now())
+    
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, postId])
-  @@map("likes")
-}
+    @@unique([userId, postId])
+    @@map("likes")
+  }
 
-model Repost {
-  id           Int      @id @default(autoincrement())
-  userId       Int
-  postId       Int
-  quoteContent String?
-  createdAt    DateTime @default(now())
-  isQuotePost  Boolean  @default(false)
-  
-  user         User     @relation(fields: [userId], references: [id])
-  post         Post     @relation(fields: [postId], references: [id])
+  model Repost {
+    id           Int      @id @default(autoincrement())
+    userId       Int
+    postId       Int
+    quoteContent String?
+    createdAt    DateTime @default(now())
+    isQuotePost  Boolean  @default(false)
+    
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    post         Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
 
-  @@map("reposts")
-}
+    @@map("reposts")
+  }
 
-model Follower {
-  id          Int      @id @default(autoincrement())
-  userId      Int      // follower
-  followingId Int      // yang diikuti
-  createdAt   DateTime @default(now())
-  
-  follower    User     @relation("UserFollowers", fields: [userId], references: [id])
-  following   User     @relation("UserFollowing", fields: [followingId], references: [id])
+  model Follower {
+    id          Int      @id @default(autoincrement())
+    userId      Int      // follower
+    followingId Int      // yang diikuti
+    createdAt   DateTime @default(now())
+    
+    follower    User     @relation("UserFollowers", fields: [userId], references: [id])
+    following   User     @relation("UserFollowing", fields: [followingId], references: [id])
 
-  @@unique([userId, followingId])
-  @@map("followers")
-}
+    @@unique([userId, followingId])
+    @@map("followers")
+  }
 
+  model UserProfileTab {
+    id           Int      @id @default(autoincrement())
+    userId       Int
+    tabName      String
+    isVisible    Boolean  @default(true)
+    displayOrder Int?
+    updatedAt    DateTime @updatedAt
+    
+    user         User     @relation(fields: [userId], references: [id])
 
-model UserActivity {
-  id            Int      @id @default(autoincrement())
-  userId        Int
-  activityType  String
-  referenceType String
-  referenceId   Int
-  createdAt     DateTime @default(now())
-  showInProfile Boolean  @default(true)
-  
-  user          User     @relation(fields: [userId], references: [id])
+    @@map("user_profile_tabs")
+  }
 
-  @@map("user_activities")
-}
+  model RefreshToken {
+    id        Int      @id @default(autoincrement())
+    token     String   @unique
+    userId    Int
 
-model UserProfileTab {
-  id           Int      @id @default(autoincrement())
-  userId       Int
-  tabName      String
-  isVisible    Boolean  @default(true)
-  displayOrder Int?
-  updatedAt    DateTime @updatedAt
-  
-  user         User     @relation(fields: [userId], references: [id])
+    user         User     @relation(fields: [userId], references: [id])
+    createdAt DateTime @default(now())
+    expiresAt DateTime
+    @@map("refresh_tokens")
+  }
 
-  @@map("user_profile_tabs")
-}
-
-model RefreshToken {
-  id        Int      @id @default(autoincrement())
-  token     String   @unique
-  userId    Int
-
-  user         User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  expiresAt DateTime
-
-  @@map("refresh_tokens")
-}
+  model Notification {
+    id         String   @id @default(cuid())
+    toUser     User     @relation("NotifToUser", fields: [toUserId], references: [id])
+    toUserId   String
+    fromUser   User?    @relation("NotifFromUser", fields: [fromUserId], references: [id])
+    fromUserId String?
+    post       Post?    @relation(fields: [postId], references: [id])
+    postId     String?
+    type       String   // like, comment, repost, follow, mention
+    message    String
+    isRead     Boolean  @default(false)
+    createdAt  DateTime @default(now())
+  }
