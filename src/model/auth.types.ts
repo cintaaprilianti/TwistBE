@@ -21,13 +21,14 @@ export interface ResetPasswordInput {
 }
 
 export interface AuthResponse {
-  user: {
+  user?: {
     id: number;
     username: string;
     email: string;
-    displayName: string | null;
-    isVerified: boolean;
+    createdAt?: string; // Opsional, sesuai frontend
   };
-  token: string;
+  token?: string; // Opsional, hanya untuk register/login
+  message: string;
+  resetToken?: string; // Opsional, hanya untuk forgot password
+  resetLink?: string; // Opsional, hanya untuk forgot password
 }
-

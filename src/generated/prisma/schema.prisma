@@ -34,10 +34,8 @@ model User {
   comments     Comment[]
   likes        Like[]
   reposts      Repost[]
-  activities   UserActivity[]
-  profileTabs  UserProfileTab[]
-  followers    Follower[]       @relation("UserFollowers")
-  following    Follower[]       @relation("UserFollowing")
+  followers    Follower[]     @relation("UserFollowers")
+  following    Follower[]     @relation("UserFollowing")
   refreshToken RefreshToken[]
 
   @@map("users")
@@ -121,33 +119,6 @@ model Follower {
 
   @@unique([userId, followingId])
   @@map("followers")
-}
-
-model UserActivity {
-  id            Int      @id @default(autoincrement())
-  userId        Int
-  activityType  String
-  referenceType String
-  referenceId   Int
-  createdAt     DateTime @default(now())
-  showInProfile Boolean  @default(true)
-
-  user User @relation(fields: [userId], references: [id])
-
-  @@map("user_activities")
-}
-
-model UserProfileTab {
-  id           Int      @id @default(autoincrement())
-  userId       Int
-  tabName      String
-  isVisible    Boolean  @default(true)
-  displayOrder Int?
-  updatedAt    DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id])
-
-  @@map("user_profile_tabs")
 }
 
 model RefreshToken {

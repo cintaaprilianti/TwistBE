@@ -9,11 +9,10 @@ auth.post("/login", AuthController.loginUser);
 
 auth.post("/forgot-password", AuthController.forgotPassword);
 
+auth.post("/refresh", AuthController.handleRefreshToken);
+
 auth.post("/reset-password", AuthController.resetPassword);
 
 auth.post("/logout", AuthController.logoutUser);
-
-
-
 
 export default auth;

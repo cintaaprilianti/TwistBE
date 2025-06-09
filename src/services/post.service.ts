@@ -1,105 +1,211 @@
 import { prisma } from "../application/database";
+import {
+  PostPayload,
+  UpdatePostRequest,
+  CreateCommentRequest,
+  CreateRepostRequest,
+  PostResponse,
+} from "../model/post.types";
 
-export const createPost = async (userId: number, data: { content: string }) => {
-  return prisma.post.create({
+const userPublicSelect = {
+  id: true,
+  username: true,
+  displayName: true,
+  isVerified: true,
+};
+
+const getPostInclude = (currentUserId?: number) => ({
+  user: {
+    select: userPublicSelect,
+  },
+  _count: {
+    select: { likes: true, comments: true, reposts: true },
+  },
+  likes: {
+    where: { userId: currentUserId },
+    select: { userId: true },
+  },
+  reposts: {
+    where: { userId: currentUserId, isQuotePost: false },
+    select: { userId: true },
+  },
+});
+
+const transformPost = (post: any): PostResponse => {
+  const { likes, reposts, ...restOfPost } = post;
+  return {
+    ...restOfPost,
+    isLiked: likes?.length > 0,
+    isReposted: reposts?.length > 0,
+    createdAt: post.createdAt,
+    updatedAt: post.updatedAt,
+    isEdited: post.isEdited,
+    isPinned: post.isPinned,
+  };
+};
+
+// Membuat postingan baru atau balasan.
+export const createPost = async (userId: number, data: PostPayload) => {
+  const post = await prisma.post.create({
     data: {
       userId,
       content: data.content,
+      parentPostId: data.parentPostId,
+    },
+    include: getPostInclude(userId),
+  });
+
+  if (post.parentPostId) {
+    await prisma.post.update({
+      where: { id: post.parentPostId },
+      data: { commentCount: { increment: 1 } },
+    });
+  }
+
+  return transformPost(post);
+};
+
+// Mengambil semua postingan (timeline utama) dengan paginasi.
+export const getPosts = async (
+  currentUserId?: number,
+  limit = 10,
+  offset = 0
+) => {
+  const whereClause = { isDeleted: false, parentPostId: null };
+
+  const posts = await prisma.post.findMany({
+    where: whereClause,
+    orderBy: { createdAt: "desc" },
+    include: getPostInclude(currentUserId),
+    take: limit,
+    skip: offset,
+  });
+
+  return posts.map(transformPost); // Kembalikan array langsung
+};
+
+/**
+ * Mengambil detail satu postingan beserta interaksinya.
+ */
+export const getPostDetail = async (postId: number, currentUserId?: number) => {
+  const post = await prisma.post.findUnique({
+    where: { id: postId, isDeleted: false },
+    include: {
+      ...getPostInclude(currentUserId),
+      comments: {
+        where: { isDeleted: false },
+        include: { user: { select: userPublicSelect } },
+        orderBy: { createdAt: "asc" },
+      },
     },
   });
+
+  if (!post) return null;
+  return transformPost(post);
 };
 
-export const getPosts = async () => {
-  return prisma.post.findMany({
-    where: { isDeleted: false },
-    orderBy: { createdAt: "desc" },
-    include: { user: true },
-  });
-};
-
-export const getPostDetail = async (postId: number) => {
-  return prisma.post.findUnique({
-    where: { id: postId },
-    include: { user: true, comments: true, likes: true, reposts: true },
-  });
-};
-
+/**
+ * Memperbarui konten sebuah postingan.
+ */
 export const updatePost = async (
   userId: number,
   postId: number,
-  content: string
+  data: UpdatePostRequest
 ) => {
-  const post = await prisma.post.findUnique({ where: { id: postId } });
-  if (!post || post.userId !== userId || post.isDeleted) return null;
+  const postToUpdate = await prisma.post.findFirst({
+    where: { id: postId, userId, isDeleted: false },
+  });
+
+  if (!postToUpdate) return null;
 
   return prisma.post.update({
     where: { id: postId },
-    data: { content, isEdited: true },
+    data: { content: data.content, isEdited: true },
   });
 };
 
+/**
+ * Menghapus postingan (Soft Delete).
+ */
 export const deletePost = async (userId: number, postId: number) => {
-  const post = await prisma.post.findUnique({ where: { id: postId } });
-  if (!post || post.userId !== userId || post.isDeleted) return false;
-
-  await prisma.post.delete({
-    where: { id: postId },
+  const result = await prisma.post.updateMany({
+    where: { id: postId, userId },
+    data: { isDeleted: true },
   });
-  return true;
+  return result.count > 0;
 };
 
+/**
+ * Memberi atau menghapus 'like' dari sebuah postingan secara atomik.
+ */
 export const toggleLikePost = async (userId: number, postId: number) => {
-  const existing = await prisma.like.findUnique({
-    where: { userId_postId: { userId, postId } },
+  return prisma.$transaction(async (tx) => {
+    const existingLike = await tx.like.findUnique({
+      where: { userId_postId: { userId, postId } },
+    });
+
+    if (existingLike) {
+      await tx.like.delete({ where: { id: existingLike.id } });
+      const updatedPost = await tx.post.update({
+        where: { id: postId },
+        data: { likeCount: { decrement: 1 } },
+        select: { likeCount: true },
+      });
+      return { liked: false, likeCount: updatedPost.likeCount };
+    } else {
+      await tx.like.create({ data: { userId, postId } });
+      const updatedPost = await tx.post.update({
+        where: { id: postId },
+        data: { likeCount: { increment: 1 } },
+        select: { likeCount: true },
+      });
+      return { liked: true, likeCount: updatedPost.likeCount };
+    }
   });
-  if (existing) {
-    await prisma.like.delete({ where: { id: existing.id } });
-    await prisma.post.update({
-      where: { id: postId },
-      data: { likeCount: { decrement: 1 } },
-    });
-    return false;
-  } else {
-    await prisma.like.create({ data: { userId, postId } });
-    await prisma.post.update({
-      where: { id: postId },
-      data: { likeCount: { increment: 1 } },
-    });
-    return true;
-  }
 };
 
+/**
+ * Melakukan repost atau membatalkan repost (bukan quote post).
+ */
 export const toggleRepost = async (userId: number, postId: number) => {
-  const existing = await prisma.repost.findFirst({
-    where: { userId, postId, isQuotePost: false },
+  return prisma.$transaction(async (tx) => {
+    const existingRepost = await tx.repost.findFirst({
+      where: { userId, postId, isQuotePost: false },
+    });
+
+    if (existingRepost) {
+      await tx.repost.delete({ where: { id: existingRepost.id } });
+      const updatedPost = await tx.post.update({
+        where: { id: postId },
+        data: { repostCount: { decrement: 1 } },
+        select: { repostCount: true },
+      });
+      return { reposted: false, repostCount: updatedPost.repostCount };
+    } else {
+      await tx.repost.create({ data: { userId, postId, isQuotePost: false } });
+      const updatedPost = await tx.post.update({
+        where: { id: postId },
+        data: { repostCount: { increment: 1 } },
+        select: { repostCount: true },
+      });
+      return { reposted: true, repostCount: updatedPost.repostCount };
+    }
   });
-  if (existing) {
-    await prisma.repost.delete({ where: { id: existing.id } });
-    await prisma.post.update({
-      where: { id: postId },
-      data: { repostCount: { decrement: 1 } },
-    });
-    return false;
-  } else {
-    await prisma.repost.create({ data: { userId, postId } });
-    await prisma.post.update({
-      where: { id: postId },
-      data: { repostCount: { increment: 1 } },
-    });
-    return true;
-  }
 };
 
+/**
+ * Membuat quote post (repost dengan komentar).
+ */
 export const quotePost = async (
   userId: number,
   postId: number,
-  quoteContent: string
+  data: CreateRepostRequest
 ) => {
-  const post = await prisma.repost.create({
+  const repost = await prisma.repost.create({
     data: {
       userId,
       postId,
-      quoteContent,
+      quoteContent: data.quoteContent,
       isQuotePost: true,
     },
   });
@@ -108,33 +214,49 @@ export const quotePost = async (
     where: { id: postId },
     data: { repostCount: { increment: 1 } },
   });
-  return post;
+  return repost;
 };
 
+/**
+ * Menambahkan komentar baru ke sebuah postingan.
+ */
+export const addComment = async (
+  userId: number,
+  postId: number,
+  data: CreateCommentRequest
+) => {
+  return prisma.$transaction(async (tx) => {
+    const comment = await tx.comment.create({
+      data: {
+        userId,
+        postId,
+        content: data.content,
+      },
+      include: {
+        user: { select: userPublicSelect },
+      },
+    });
+
+    await tx.post.update({
+      where: { id: postId },
+      data: { commentCount: { increment: 1 } },
+    });
+
+    return comment;
+  });
+};
+
+/**
+ * Mengambil semua komentar dari sebuah postingan.
+ */
 export const getPostComments = async (postId: number) => {
   return prisma.comment.findMany({
     where: { postId, isDeleted: false },
     orderBy: { createdAt: "asc" },
-    include: { user: true },
-  });
-};
-
-export const addComment = async (
-  userId: number,
-  postId: number,
-  content: string
-) => {
-  const comment = await prisma.comment.create({
-    data: {
-      userId,
-      postId,
-      content,
+    include: {
+      user: {
+        select: userPublicSelect,
+      },
     },
-    include: { user: true },
   });
-  await prisma.post.update({
-    where: { id: postId },
-    data: { commentCount: { increment: 1 } },
-  });
-  return comment;
 };
